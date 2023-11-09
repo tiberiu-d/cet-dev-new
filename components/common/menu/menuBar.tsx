@@ -32,28 +32,34 @@ const MenuBar = () => {
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">File</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem disabled>
-              <UserIcon className="h-4 w-4 mr-3" />
-              Login <MenubarShortcut>⌘L</MenubarShortcut>
-            </MenubarItem>
+            <Link href="/login">
+              <MenubarItem>
+                <UserIcon className="h-4 w-4 mr-3" />
+                Login <MenubarShortcut>⌘L</MenubarShortcut>
+              </MenubarItem>
+            </Link>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">View</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem disabled>
-              <ClipboardCheckIcon className="h-4 w-4 mr-3" />
-              Dashboard
-            </MenubarItem>
+            <Link href="/dashboard" aria-disabled>
+              <MenubarItem>
+                <ClipboardCheckIcon className="h-4 w-4 mr-3" />
+                Dashboard
+              </MenubarItem>
+            </Link>
             <MenubarItem disabled>
               <PlayCircleIcon className="h-4 w-4 mr-3" />
               One page Review
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>
-              <StickyNoteIcon className="h-4 w-4 mr-3" />
-              All Escalations
-            </MenubarItem>
+            <Link href="/escalations">
+              <MenubarItem>
+                <StickyNoteIcon className="h-4 w-4 mr-3" />
+                All Escalations
+              </MenubarItem>
+            </Link>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>

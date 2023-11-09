@@ -6,25 +6,17 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
 } from "@/components/ui/menubar";
 
 import {
   ClipboardCheckIcon,
-  CogIcon,
   GitPullRequestDraft,
   GraduationCapIcon,
   MailQuestionIcon,
   PlayCircleIcon,
   PuzzleIcon,
-  ScanTextIcon,
-  ServerCrashIcon,
-  ShieldEllipsisIcon,
   StickyNoteIcon,
   UserIcon,
-  UsersIcon,
 } from "lucide-react";
 
 import MenuIcon from "./menuIcon";
@@ -38,9 +30,7 @@ const MenuBar = () => {
       <div className="flex items-center justify-center">
         <MenuIcon />
         <MenubarMenu>
-          <MenubarTrigger className="hover:bg-slate-200 cursor-pointer">
-            File
-          </MenubarTrigger>
+          <MenubarTrigger className="hover:bg-slate-200">File</MenubarTrigger>
           <MenubarContent>
             <MenubarItem disabled>
               <UserIcon className="h-4 w-4 mr-3" />
@@ -49,9 +39,7 @@ const MenuBar = () => {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="hover:bg-slate-200 cursor-pointer">
-            View
-          </MenubarTrigger>
+          <MenubarTrigger className="hover:bg-slate-200">View</MenubarTrigger>
           <MenubarContent>
             <MenubarItem disabled>
               <ClipboardCheckIcon className="h-4 w-4 mr-3" />
@@ -69,7 +57,7 @@ const MenuBar = () => {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="hover:bg-slate-200 cursor-pointer">
+          <MenubarTrigger className="hover:bg-slate-200">
             Masterdata
           </MenubarTrigger>
           <MenubarContent>
@@ -85,9 +73,7 @@ const MenuBar = () => {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="hover:bg-slate-200 cursor-pointer">
-            Help
-          </MenubarTrigger>
+          <MenubarTrigger className="hover:bg-slate-200">Help</MenubarTrigger>
           <MenubarContent>
             <MenubarItem>
               <GraduationCapIcon className="h-4 w-4 mr-3" />

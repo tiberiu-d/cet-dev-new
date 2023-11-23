@@ -26,7 +26,7 @@ import Link from "next/link";
 
 const MenuBar = () => {
   return (
-    <Menubar className="rounded-b-none bg-slate-100 flex items-center justify-between">
+    <Menubar className="rounded-b-none bg-slate-100 flex items-center justify-between shadow-sm">
       <div className="flex items-center justify-center">
         <MenuIcon />
         <MenubarMenu>

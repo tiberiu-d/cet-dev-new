@@ -12,20 +12,27 @@ export const metadata: Metadata = {
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import MenuBar from "@/components/common/menu/menuBar";
 
+// themeing and flicker fixing
+import StyledComponentsRegistry from "@/lib/AntdRegistry";
+import theme from "@/styles/themeConfig";
+import { ConfigProvider } from "antd";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={font.className}>
       <body>
-        <main className="min-h-screen flex flex-col p-10 subpixel-antialiased">
-          <Card className="flex flex-col flex-grow gap-2 shadow-lg ">
-            <CardHeader className="p-0">
-              <MenuBar />
-            </CardHeader>
-            <CardContent className="flex-grow p-3 overflow-y-auto">
-              {children}
-            </CardContent>
-          </Card>
-        </main>
+        <ConfigProvider theme={theme}>
+          <main className="min-h-screen flex flex-col p-10 subpixel-antialiased">
+            <Card className="flex flex-col flex-grow gap-2 shadow-lg ">
+              <CardHeader className="p-0">
+                <MenuBar />
+              </CardHeader>
+              <CardContent className="flex-grow p-3 overflow-y-auto">
+                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+              </CardContent>
+            </Card>
+          </main>
+        </ConfigProvider>
       </body>
     </html>
   );

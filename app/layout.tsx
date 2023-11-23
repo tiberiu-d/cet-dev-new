@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={font.className}>
       <body>
-        <main className="min-h-screen flex flex-col p-10">
+        <main className="min-h-screen flex flex-col p-10 subpixel-antialiased">
           <Card className="flex flex-col flex-grow gap-2 shadow-lg ">
             <CardHeader className="p-0">
               <MenuBar />

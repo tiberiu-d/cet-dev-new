@@ -1,5 +1,7 @@
 "use client";
 
+import "./table.scss";
+
 import { Table } from "antd";
 import { mockData } from "@/database/MOCK_DATA.js";
 
@@ -333,6 +335,7 @@ const EscaTable = () => {
     <>
       <p>here goes nothing ...</p>
       <Table
+        className="vt_table"
         columns={columns}
         dataSource={mockData}
         size="large"

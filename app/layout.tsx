@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <CardHeader className="p-0">
                 <MenuBar />
               </CardHeader>
-              <CardContent className="flex-grow p-3 overflow-y-auto">
+              <CardContent className="flex flex-grow p-3 overflow-y-auto">
                 <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
               </CardContent>
             </Card>

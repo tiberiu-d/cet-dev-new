@@ -33,7 +33,7 @@ const MenuBar = () => {
           <MenubarTrigger className="hover:bg-slate-200">File</MenubarTrigger>
           <MenubarContent>
             <Link href="/login">
-              <MenubarItem>
+              <MenubarItem disabled>
                 <UserIcon className="h-4 w-4 mr-3" />
                 Login <MenubarShortcut>⌘L</MenubarShortcut>
               </MenubarItem>
@@ -44,18 +44,20 @@ const MenuBar = () => {
           <MenubarTrigger className="hover:bg-slate-200">View</MenubarTrigger>
           <MenubarContent>
             <Link href="/dashboard" aria-disabled>
-              <MenubarItem>
+              <MenubarItem disabled>
                 <ClipboardCheckIcon className="h-4 w-4 mr-3" />
                 Dashboard
               </MenubarItem>
             </Link>
-            <MenubarItem disabled>
-              <PlayCircleIcon className="h-4 w-4 mr-3" />
-              One page Review
-            </MenubarItem>
+            <Link href="/review" aria-disabled>
+              <MenubarItem>
+                <PlayCircleIcon className="h-4 w-4 mr-3" />
+                One page Review
+              </MenubarItem>
+            </Link>
             <MenubarSeparator />
             <Link href="/escalations">
-              <MenubarItem>
+              <MenubarItem disabled>
                 <StickyNoteIcon className="h-4 w-4 mr-3" />
                 All Escalations
               </MenubarItem>

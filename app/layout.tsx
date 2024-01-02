@@ -22,12 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={font.className}>
       <body>
         <ConfigProvider theme={theme}>
-          <main className="min-h-screen flex flex-col p-10 subpixel-antialiased">
-            <Card className="flex flex-col flex-grow gap-2 shadow-lg ">
+          <main className="h-screen flex flex-col p-10 subpixel-antialiased">
+            <Card className="flex flex-col gap-2 shadow-lg h-full">
               <CardHeader className="p-0">
                 <MenuBar />
               </CardHeader>
-              <CardContent className="flex flex-grow p-3 overflow-y-auto">
+              <CardContent className="flex p-3 overflow-y-auto h-full">
                 <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
               </CardContent>
             </Card>

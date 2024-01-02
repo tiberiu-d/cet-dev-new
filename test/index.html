@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Complex Inner Layout with Tailwind Example</title>
+</head>
+<body>
+  <div class="h-screen flex w-[100px]">
+    <div class="p-4 bg-gray-200">
+      <!-- Inner Container with Fixed and Scrollable Divs -->
+      <div class="flex flex-col h-full">
+        <!-- Fixed Height Div -->
+        <div class="h-16 bg-blue-200 mb-4">
+          Fixed Height Content
+        </div>
+        <!-- Scrollable Div (Takes Remaining Space) -->
+        <div class="flex-1 overflow-auto bg-green-200 w-[100px]">
+          <!-- Your scrollable content goes here -->
+          <!-- This div will have scroll bars if the content exceeds its height -->
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione, modi, voluptatem iusto magnam, commodi illum ducimus architecto in quaerat dolorum repellat mollitia distinctio pariatur assumenda? Reprehenderit nostrum ea hic vero incidunt molestias veritatis dolore. Rem earum quaerat nobis, modi ullam, cum rerum quos repellat expedita quasi, sapiente porro! Nobis numquam reiciendis veritatis et provident dolores explicabo maiores delectus, suscipit, aliquid magni molestias! Sit nulla consequuntur iste eligendi ab exercitationem quod modi distinctio alias non! A illum enim voluptatem sint, labore aspernatur repellat? Reprehenderit, aspernatur velit dolores odio blanditiis animi modi cumque impedit officiis error ab dolore harum eius ipsam adipisci?
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

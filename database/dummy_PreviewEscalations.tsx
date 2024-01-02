@@ -47,9 +47,8 @@ export const dbPreviewEscalations = [
   // new data
   {
     id: "ESC-test-04",
-    title: "massive explosion",
-    description:
-      "lorem ipsum and other magical and magnificent stuff that was happening",
+    title: "exceptional nothingness",
+    description: "magical and magnificent stuff that was happening",
     type: "design",
     escal_date: "10.12.2022",
     descal_date: "26.08.2023",
@@ -61,8 +60,8 @@ export const dbPreviewEscalations = [
     },
   },
   {
-    id: "ESC-test-04",
-    title: "massive explosion",
+    id: "ESC-test-05",
+    title: "meaningfull exceptionalism that sucks",
     description:
       "lorem ipsum and other magical and magnificent stuff that was happening",
     type: "design",
@@ -72,67 +71,7 @@ export const dbPreviewEscalations = [
     customer_group: "CustGroup004",
     level: {
       name: "Level Two",
-      color: "red",
-    },
-  },
-  {
-    id: "ESC-test-04",
-    title: "massive explosion",
-    description:
-      "lorem ipsum and other magical and magnificent stuff that was happening",
-    type: "design",
-    escal_date: "10.12.2022",
-    descal_date: "26.08.2023",
-    est_descal_date: "30.07.2023",
-    customer_group: "CustGroup004",
-    level: {
-      name: "Level Two",
-      color: "red",
-    },
-  },
-  {
-    id: "ESC-test-04",
-    title: "massive explosion",
-    description:
-      "lorem ipsum and other magical and magnificent stuff that was happening",
-    type: "design",
-    escal_date: "10.12.2022",
-    descal_date: "26.08.2023",
-    est_descal_date: "30.07.2023",
-    customer_group: "CustGroup004",
-    level: {
-      name: "Level Two",
-      color: "red",
-    },
-  },
-  {
-    id: "ESC-test-04",
-    title: "massive explosion",
-    description:
-      "lorem ipsum and other magical and magnificent stuff that was happening",
-    type: "design",
-    escal_date: "10.12.2022",
-    descal_date: "26.08.2023",
-    est_descal_date: "30.07.2023",
-    customer_group: "CustGroup004",
-    level: {
-      name: "Level Two",
-      color: "red",
-    },
-  },
-  {
-    id: "ESC-test-04",
-    title: "massive explosion",
-    description:
-      "lorem ipsum and other magical and magnificent stuff that was happening",
-    type: "design",
-    escal_date: "10.12.2022",
-    descal_date: "26.08.2023",
-    est_descal_date: "30.07.2023",
-    customer_group: "CustGroup004",
-    level: {
-      name: "Level Two",
-      color: "red",
+      color: "yellow",
     },
   },
 ];

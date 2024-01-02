@@ -6,7 +6,6 @@ import { Search } from "lucide-react";
 
 import { Escalation } from "@/database/dummy_PreviewEscalations";
 
-import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,7 +14,15 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import EscalationList from "./escalation-list";
+import EscalationDisplay from "./escalation-display";
+import AdditionalFilters from "./additional-filters";
 
 interface EscalationsPreviewProps {
   escalations: Escalation[];
@@ -26,12 +33,15 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
 
   return (
     <TooltipProvider delayDuration={0}>
-      <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
-        <ResizablePanel collapsible defaultSize={25} minSize={25} maxSize={35}>
-          <Tabs defaultValue="all">
-            <div className="flex flex-col h-full items-center justify-between p-4 w-full">
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="rounded-lg border h-full w-full"
+      >
+        <ResizablePanel collapsible defaultSize={25} minSize={25} maxSize={30}>
+          <Tabs defaultValue="all" className="flex flex-col h-full">
+            <div className="flex flex-col items-center justify-between p-4 w-full">
               <div className="flex w-full justify-between items-center pb-4">
-                <h1 className="text-lg font-bold">Escalations</h1>
+                <h1 className="text-2xl font-bold">Escalations</h1>
                 <TabsList>
                   <TabsTrigger value="all" className="text-xs">
                     All levels
@@ -54,12 +64,24 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
                   </div>
                 </form>
               </div>
-              <Separator className="mt-4" />
-            </div>
-            <TabsContent value="all" className="m-0 overflow-auto">
-              <div className="tibi_all">
-                <EscalationList items={escalations} />
+              <div className="flex w-full text-xs">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <p className="underline text-blue-600 ml-auto py-2 hover:cursor-pointer">
+                      adv. search
+                    </p>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 shadow-xl">
+                    <AdditionalFilters />
+                  </PopoverContent>
+                </Popover>
               </div>
+            </div>
+            <TabsContent
+              value="all"
+              className="m-0 overflow-auto w-full flex-1"
+            >
+              <EscalationList items={escalations} />
             </TabsContent>
             <TabsContent value="yellow" className="m-0">
               <EscalationList
@@ -79,7 +101,12 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={75} className="w-full p-4">
-          test-test-test
+          <EscalationDisplay
+            escalation={
+              escalations.find((item) => item.id === escalation.selected_id) ||
+              null
+            }
+          />
         </ResizablePanel>
       </ResizablePanelGroup>
     </TooltipProvider>

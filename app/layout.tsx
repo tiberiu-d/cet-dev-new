@@ -16,8 +16,13 @@ import MenuBar from "@/components/common/menu/menuBar";
 import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import theme from "@/styles/themeConfig";
 import { ConfigProvider } from "antd";
+import TanstackProvider from "@/providers/TanstackProvider";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={font.className}>
       <body>
@@ -28,7 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <MenuBar />
               </CardHeader>
               <CardContent className="flex p-3 overflow-y-auto h-full">
-                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+                <StyledComponentsRegistry>
+                  <TanstackProvider>{children}</TanstackProvider>
+                </StyledComponentsRegistry>
               </CardContent>
             </Card>
           </main>

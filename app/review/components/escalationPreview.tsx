@@ -24,8 +24,19 @@ import EscalationList from "./escalation-list";
 import EscalationDisplay from "./escalation-display";
 import AdditionalFilters from "./additional-filters";
 
+// type definition
+type EscalationType = {
+  ID: string;
+  ESCAL_DATE: string;
+  DESCAL_DATE: string;
+  TITLE: string;
+  DESCRIPTION: string;
+  CUSTOMER_GROUP: string;
+  LEVEL: string;
+  LEVEL_COLOR: string;
+};
 interface EscalationsPreviewProps {
-  escalations: Escalation[];
+  escalations: EscalationType[];
 }
 
 const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
@@ -86,24 +97,24 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
             <TabsContent value="yellow" className="m-0">
               <EscalationList
                 items={escalations.filter(
-                  (item) => item.level.color.toLowerCase() === "yellow"
+                  (item) => item.LEVEL_COLOR.toLowerCase() === "y"
                 )}
               />
             </TabsContent>
             <TabsContent value="red" className="m-0">
               <EscalationList
                 items={escalations.filter(
-                  (item) => item.level.color.toLowerCase() === "red"
+                  (item) => item.LEVEL_COLOR.toLowerCase() === "r"
                 )}
               />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={75} className="w-full p-4">
+        <ResizablePanel defaultSize={70} className="w-full p-4">
           <EscalationDisplay
             escalation={
-              escalations.find((item) => item.id === escalation.selected_id) ||
+              escalations.find((item) => item.ID === escalation.selected_id) ||
               null
             }
           />

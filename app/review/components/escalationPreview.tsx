@@ -111,7 +111,7 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
           </Tabs>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={70} className="w-full p-4">
+        <ResizablePanel defaultSize={70} className="w-full">
           <EscalationDisplay
             escalation={
               escalations.find((item) => item.ID === escalation.selected_id) ||

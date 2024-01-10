@@ -8,17 +8,21 @@ type OnePagerProps = {
 };
 
 // get the data
-const fetchData = async (escalationID: string) => {
+const getOnePagerData = async (escalationID: string) => {
   const response = await axios.get(
     `http://localhost:2999/api/escalations/${escalationID}`
   );
-  return response.data.results;
+  return response.data.result[0];
 };
 
 const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data: onePager,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["specificEntry", ESCALATION_ID],
-    queryFn: () => fetchData(ESCALATION_ID),
+    queryFn: () => getOnePagerData(ESCALATION_ID),
   });
 
   if (isLoading) {
@@ -29,6 +33,6 @@ const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
     return <div>some error</div>;
   }
 
-  return <div>OnePager details and stuff - {ESCALATION_ID}</div>;
+  return <div>OnePager details and stuff - {onePager.QKAM}</div>;
 };
 export default OnePager;

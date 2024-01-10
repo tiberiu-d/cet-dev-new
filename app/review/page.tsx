@@ -4,9 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import EscalationsPreview from "./components/escalationPreview";
 
-// dummy data
-import { dbPreviewEscalations } from "@/database/dummy_PreviewEscalations";
-
 // get the data
 const fetchData = async () => {
   const response = await axios.get("http://localhost:2999/api/sidebar_data");

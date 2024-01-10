@@ -37,7 +37,8 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
         <div className="w-full flex items-center justify-between bg-gray-50">
           <p className="p-4">
             Now watching escalation{" "}
-            <span className="font-bold text-blue-500">{escalation.ID}</span>
+            <span className="font-bold text-blue-500">{escalation.ID}</span>,
+            created on {escalation.ESCAL_DATE}
           </p>
           <div className="flex flex-row items-center">
             <Separator orientation="vertical" className="mx-2 h-6" />

@@ -81,4 +81,5 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -300px -600px;
+  box-sizing: border-box;
 }

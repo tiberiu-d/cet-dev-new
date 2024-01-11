@@ -1,10 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { useEscalation } from "../use-escalation";
 import { Search } from "lucide-react";
-
-import { Escalation } from "@/database/dummy_PreviewEscalations";
 
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -68,12 +65,14 @@ const EscalationsPreview = ({ escalations }: EscalationsPreviewProps) => {
                 </TabsList>
               </div>
               <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 w-full">
-                <form>
-                  <div className="relative">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="Search" className="pl-8" />
-                  </div>
-                </form>
+                <div className="relative">
+                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search"
+                    className="pl-8"
+                    onChange={(e) => console.log(e.target.value)}
+                  />
+                </div>
               </div>
               <div className="flex w-full text-xs">
                 <Popover>

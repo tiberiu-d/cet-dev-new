@@ -33,7 +33,7 @@ interface EscalationDisplayProps {
 const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
   if (escalation) {
     return (
-      <div className="content flex h-full flex-col items-start w-full">
+      <div className="content flex flex-col items-start w-full">
         <div className="w-full flex items-center justify-between bg-gray-50">
           <p className="p-4">
             Now watching escalation{" "}
@@ -79,7 +79,7 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
             <div className="desc">{escalation.DESCRIPTION}</div>
           </div>
         </div>
-        <div className="relative w-full">
+        <div className="w-full flex-grow">
           <Separator />
           <div className="w-full ">
             <Tabs

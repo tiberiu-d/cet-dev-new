@@ -1,8 +1,8 @@
 import { atom, useAtom } from "jotai";
-import { Escalation } from "@/database/dummy_PreviewEscalations";
+import { EscalationType } from "@/types/escalation";
 
 type Config = {
-  selected_id: Escalation["id"] | null;
+  selected_id: EscalationType["ID"] | null;
 };
 
 const configAtom = atom<Config>({

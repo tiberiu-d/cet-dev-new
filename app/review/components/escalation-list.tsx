@@ -1,5 +1,5 @@
 // trigger imports
-import { useEscalation } from "../use-escalation";
+import { useEscalation } from "@/hooks/useEscalation";
 // utils imports
 import { cn } from "@/lib/utils";
 // types imports

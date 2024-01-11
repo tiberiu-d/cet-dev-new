@@ -38,7 +38,7 @@ import AdditionalFilters from "./components/additional-filters";
 // fetch data function
 const fetchData = async ({ q, cust }: SearchParamsType) => {
   if (q === "") q = "all";
-  if (cust === "") cust = "all";
+  if (cust === "" || cust.toLowerCase() === "all available") cust = "all";
 
   const TARGET = `http://localhost:2999/api/sidebar_data?q=${q}&cust=${cust}`;
 
@@ -102,7 +102,7 @@ const EscalationsPreview = () => {
                       adv. search
                     </p>
                   </PopoverTrigger>
-                  <PopoverContent className="w-80 shadow-xl">
+                  <PopoverContent className="shadow-xl flex flex-col w-96">
                     <AdditionalFilters />
                   </PopoverContent>
                 </Popover>

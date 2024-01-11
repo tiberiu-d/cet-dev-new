@@ -1,6 +1,5 @@
 "use client";
 
-
 import axios from "axios";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -37,7 +36,7 @@ type CustomerType = {
   VALUE: string;
 };
 
-const TestPage = () => {
+const CustomerFilter = () => {
   const [open, setOpen] = useState(false);
   const [params, setParams] = useSearchParams();
 
@@ -95,4 +94,4 @@ const TestPage = () => {
     </Popover>
   );
 };
-export default TestPage;
+export default CustomerFilter;

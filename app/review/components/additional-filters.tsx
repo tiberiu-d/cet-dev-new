@@ -1,4 +1,7 @@
 import { Separator } from "@/components/ui/separator";
+import CustomerFilter from "./customer-filter";
+import { Button } from "@/components/ui/button";
+import ResetFilters from "./reset-filters";
 
 const AdditionalFilters = () => {
   return (
@@ -10,7 +13,17 @@ const AdditionalFilters = () => {
         </p>
       </div>
       <Separator />
-      <div className="grid gap-2">test test test</div>
+      <div className="flex flex-col gap-4 items-center">
+        <div className="flex flex-row items-center justify-between w-full">
+          <label className="text-sm">Customer</label>
+          <CustomerFilter />
+        </div>
+        <div>
+          <p>... and aditional ones, if you want ...</p>
+        </div>
+        <Separator />
+        <ResetFilters />
+      </div>
     </div>
   );
 };

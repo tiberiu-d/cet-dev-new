@@ -1,6 +1,5 @@
 import { Separator } from "@/components/ui/separator";
 import CustomerFilter from "./customer-filter";
-import { Button } from "@/components/ui/button";
 import ResetFilters from "./reset-filters";
 
 const AdditionalFilters = () => {
@@ -19,7 +18,7 @@ const AdditionalFilters = () => {
           <CustomerFilter />
         </div>
         <div>
-          <p>... and aditional ones, if you want ...</p>
+          <p>... and more more more, if you want ...</p>
         </div>
         <Separator />
         <ResetFilters />

@@ -1,3 +1,7 @@
+const TestPage = () => {
+  return <div>TestPage</div>;
+};
+export default TestPage;
 // {/* row 1 */}
 // <Card className="hover:bg-gray-50">
 //   <CardHeader>

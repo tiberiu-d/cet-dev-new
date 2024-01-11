@@ -50,6 +50,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
+import ReviewLeaf from "./review-leaf";
+
 // get the data
 const getOnePagerData = async (escalationID: string): Promise<OnePagerType> => {
   const response = await axios.get(
@@ -76,9 +78,9 @@ const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
     return <div>some error</div>;
   }
 
-  return (
-    <div className="w-full h-full flex flex-col items-start">
-      <ScrollArea className="h-full mx-auto">
+  if (onePager) {
+    return (
+      <div className="w-full h-full flex flex-col items-start">
         <div className="grid grid-cols-4 gap-1 mx-auto">
           {/* row 1 */}
           <Card className="hover:bg-gray-50">
@@ -238,8 +240,8 @@ const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
             <CardContent>{onePager?.RECURRING}</CardContent>
           </Card>
         </div>
-      </ScrollArea>
-    </div>
-  );
+      </div>
+    );
+  }
 };
 export default OnePager;

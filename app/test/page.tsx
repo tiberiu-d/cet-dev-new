@@ -1,98 +1,157 @@
-"use client";
-
-
-import axios from "axios";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "@/hooks/useSearch";
-
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-
-import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
-// fetch data function
-const fetchData = async () => {
-  const TARGET = `http://localhost:2999/api/customers`;
-
-  const response = await axios.get(TARGET);
-  return response.data.results;
-};
-
-type CustomerType = {
-  LABEL: string;
-  VALUE: string;
-};
-
-const TestPage = () => {
-  const [open, setOpen] = useState(false);
-  const [params, setParams] = useSearchParams();
-
-  const { data: customers } = useQuery<CustomerType[]>({
-    queryKey: ["customers", params],
-    queryFn: () => fetchData(),
-  });
-
-  return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[220px] justify-between"
-        >
-          {params.cust
-            ? customers?.find(
-                (customer) =>
-                  customer.VALUE.toLowerCase() === params.cust.toLowerCase()
-              )?.LABEL
-            : "Select customer..."}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[220px] p-0">
-        <Command>
-          <CommandInput placeholder="Search customer..." className="h-9" />
-          <CommandEmpty>No customer found.</CommandEmpty>
-          <CommandGroup className="max-h-[300px] hover:overflow-y-scroll">
-            {customers?.map((customer) => (
-              <CommandItem
-                key={customer.VALUE}
-                value={customer.VALUE}
-                onSelect={(currentValue) => {
-                  setParams({ ...params, cust: currentValue });
-                  setOpen(false);
-                }}
-              >
-                {customer.LABEL}
-                <CheckIcon
-                  className={cn(
-                    "ml-auto h-4 w-4",
-                    params.cust === customer.VALUE.toLowerCase()
-                      ? "opacity-100"
-                      : "opacity-0"
-                  )}
-                />
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
-  );
-};
-export default TestPage;
+// {/* row 1 */}
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>QKAM</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.QKAM}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Basic Data</CardTitle>
+//   </CardHeader>
+//   <CardContent className="flex flex-col">
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">modified on</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{}</p>
+//     </div>
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">status</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.STATUS}</p>
+//     </div>
+//   </CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Sub Type</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.TYPE}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Additional Dates</CardTitle>
+//   </CardHeader>
+//   <CardContent className="flex flex-col">
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">de-escalation date</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.DESCAL_DATE}</p>
+//     </div>
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">est. de-escalation date</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{}</p>
+//     </div>
+//   </CardContent>
+// </Card>
+// {/* row 2 */}
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Customer Group</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.CUSTOMER_GROUP}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Customer Brand</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.CUSTOMER_BRAND}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Customer Location</CardTitle>
+//   </CardHeader>
+//   <CardContent>no data</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Customer Escalation Level</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.LEVEL}</CardContent>
+// </Card>
+// {/* row 3 */}
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Additional Customer Brands</CardTitle>
+//   </CardHeader>
+//   <CardContent>no data</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Vitesco Division</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.VT_DIVISION_NAME}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Vitesco Business Unit</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.VT_BUSINESS_UNIT_NAME}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Vitesco Plant</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.VT_PLANT}</CardContent>
+// </Card>
+// {/* row 4 */}
+// <Card className="col-span-2 hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Customer Impact</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.CUSTOMER_IMPACT}</CardContent>
+// </Card>
+// <Card className="col-span-2 hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Consumer Impact</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.CONSUMER_IMPACT}</CardContent>
+// </Card>
+// {/* row 5 */}
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Affected parts & vehicles</CardTitle>
+//   </CardHeader>
+//   <CardContent className="flex flex-col">
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">affected parts</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.AFFECTED_PARTS}</p>
+//     </div>
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">affected vehicles</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.AFFECTED_VEHICLES}</p>
+//     </div>
+//   </CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Vehicle details</CardTitle>
+//   </CardHeader>
+//   <CardContent className="flex flex-col">
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">platform</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.CAR_PLATFORMS}</p>
+//     </div>
+//     <div className="flex items-center gap-2">
+//       <p className="text-sm min-w-[150px]">model</p>
+//       <Separator orientation="vertical" className="mx-2 h-6" />
+//       <p>{onePager?.CAR_MODELS}</p>
+//     </div>
+//   </CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Supplier</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.SUPPLIER}</CardContent>
+// </Card>
+// <Card className="hover:bg-gray-50">
+//   <CardHeader>
+//     <CardTitle>Is Reccuring?</CardTitle>
+//   </CardHeader>
+//   <CardContent>{onePager?.RECURRING}</CardContent>
+// </Card>

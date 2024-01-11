@@ -55,13 +55,13 @@ const MenuBar = () => {
                 One page Review
               </MenubarItem>
             </Link>
-            <MenubarSeparator />
+            {/* <MenubarSeparator />
             <Link href="/escalations">
               <MenubarItem disabled>
                 <StickyNoteIcon className="h-4 w-4 mr-3" />
                 All Escalations
               </MenubarItem>
-            </Link>
+            </Link> */}
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>

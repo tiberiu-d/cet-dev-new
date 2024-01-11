@@ -14,17 +14,8 @@ import { Clock, MoreVertical } from "lucide-react";
 // additional components
 import OnePager from "./one-pager";
 
-// type definition
-type EscalationType = {
-  ID: string;
-  ESCAL_DATE: string;
-  DESCAL_DATE: string;
-  TITLE: string;
-  DESCRIPTION: string;
-  CUSTOMER_GROUP: string;
-  LEVEL: string;
-  LEVEL_COLOR: string;
-};
+// types import
+import { EscalationType } from "@/types/escalation";
 
 interface EscalationDisplayProps {
   escalation: EscalationType | null;

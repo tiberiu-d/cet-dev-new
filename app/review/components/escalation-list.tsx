@@ -3,7 +3,7 @@ import { useEscalation } from "@/hooks/useEscalation";
 // utils imports
 import { cn } from "@/lib/utils";
 // types imports
-import { Escalation } from "@/database/dummy_PreviewEscalations";
+import { EscalationType } from "@/types/escalation";
 // UI components import
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -11,17 +11,6 @@ import { Separator } from "@/components/ui/separator";
 // icons & other graphics
 import { Calendar } from "lucide-react";
 
-// type definition
-type EscalationType = {
-  ID: string;
-  ESCAL_DATE: string;
-  DESCAL_DATE: string;
-  TITLE: string;
-  DESCRIPTION: string;
-  CUSTOMER_GROUP: string;
-  LEVEL: string;
-  LEVEL_COLOR: string;
-};
 interface EscalationListProps {
   items: EscalationType[];
 }

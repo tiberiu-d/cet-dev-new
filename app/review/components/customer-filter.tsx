@@ -25,7 +25,7 @@ import {
 
 // fetch data function
 const fetchData = async () => {
-  const TARGET = `http://localhost:2999/api/customers`;
+  const TARGET = `http://localhost:1999/api/customers`;
 
   const response = await axios.get(TARGET);
   return response.data.results;

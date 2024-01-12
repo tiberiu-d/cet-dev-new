@@ -55,7 +55,7 @@ import ReviewLeaf from "./review-leaf";
 // get the data
 const getOnePagerData = async (escalationID: string): Promise<OnePagerType> => {
   const response = await axios.get(
-    `http://localhost:2999/api/escalations/${escalationID}`
+    `http://localhost:1999/api/escalations/${escalationID}`
   );
   return response.data.result[0];
 };

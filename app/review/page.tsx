@@ -40,7 +40,7 @@ const fetchData = async ({ q, cust }: SearchParamsType) => {
   if (q === "") q = "all";
   if (cust === "" || cust.toLowerCase() === "all available") cust = "all";
 
-  const TARGET = `http://localhost:2999/api/sidebar_data?q=${q}&cust=${cust}`;
+  const TARGET = `http://localhost:1999/api/sidebar_data?q=${q}&cust=${cust}`;
 
   const response = await axios.get(TARGET);
   return response.data.results;

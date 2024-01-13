@@ -63,7 +63,7 @@ const EscalationsPreview = () => {
         direction="horizontal"
         className="rounded-lg border h-full w-full"
       >
-        <ResizablePanel collapsible defaultSize={30} minSize={25} maxSize={30}>
+        <ResizablePanel collapsible defaultSize={25} minSize={25} maxSize={25}>
           <Tabs defaultValue="all" className="flex flex-col h-full">
             <div className="flex flex-col items-center justify-between p-4 w-full">
               <div className="flex w-full justify-between items-center pb-4">
@@ -138,7 +138,7 @@ const EscalationsPreview = () => {
           </Tabs>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={70} className="w-full">
+        <ResizablePanel defaultSize={75} className="w-full">
           {escalations && (
             <EscalationDisplay
               escalation={

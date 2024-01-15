@@ -17,6 +17,7 @@ import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import theme from "@/styles/themeConfig";
 import { ConfigProvider } from "antd";
 import TanstackProvider from "@/providers/TanstackProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default function RootLayout({
   children,
@@ -29,14 +30,16 @@ export default function RootLayout({
         <ConfigProvider theme={theme}>
           <main className="h-screen flex flex-col p-10 subpixel-antialiased">
             <Card className="flex flex-col gap-2 shadow-lg h-full">
-              <CardHeader className="p-0">
-                <MenuBar />
-              </CardHeader>
-              <CardContent className="flex p-3 overflow-y-auto h-full">
-                <StyledComponentsRegistry>
-                  <TanstackProvider>{children}</TanstackProvider>
-                </StyledComponentsRegistry>
-              </CardContent>
+              <TooltipProvider>
+                <CardHeader className="p-0">
+                  <MenuBar />
+                </CardHeader>
+                <CardContent className="flex p-3 overflow-y-auto h-full">
+                  <StyledComponentsRegistry>
+                    <TanstackProvider>{children}</TanstackProvider>
+                  </StyledComponentsRegistry>
+                </CardContent>
+              </TooltipProvider>
             </Card>
           </main>
         </ConfigProvider>

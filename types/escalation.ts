@@ -8,3 +8,5 @@ export type EscalationType = {
   LEVEL: string;
   LEVEL_COLOR: string;
 };
+
+export type PartialEscalationType = Partial<EscalationType>;

@@ -33,7 +33,7 @@ import {
 // extra components
 import EscalationList from "./components/escalation-list";
 import EscalationDisplay from "./components/escalation-display";
-import AdditionalFilters from "./components/additional-filters";
+import AdditionalFilters from "./components/filters/additional-filters";
 
 // fetch data function
 const fetchData = async ({ q, cust }: SearchParamsType) => {

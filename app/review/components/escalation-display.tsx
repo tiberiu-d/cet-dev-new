@@ -36,7 +36,7 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
             <TabsTrigger value="history">History</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
           </TabsList>
-          <TabsContent value="dash" className="flex-grow overflow-auto">
+          <TabsContent value="dash" className="w-full flex-grow overflow-auto">
             <ScrollArea className="h-full px-4 py-2">
               <OnePager ESCALATION_ID={escalation.ID} />
             </ScrollArea>

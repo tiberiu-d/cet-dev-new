@@ -1,3 +1,5 @@
+import OnePager from "@/app/review/components/details/one-pager";
+
 export type EscalationType = {
   ID: string;
   ESCAL_DATE: string;
@@ -43,3 +45,5 @@ export type OnePagerType = {
   CAR_MODELS: string;
   CAR_PLATFORMS: string;
 };
+
+export type PartialOnePagerType = Partial<OnePagerType>;

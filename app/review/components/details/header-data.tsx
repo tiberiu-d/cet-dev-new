@@ -21,6 +21,7 @@ import { Clock, MoreVertical } from "lucide-react";
 // types & stuff
 import { PartialEscalationType } from "@/types/escalation";
 import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 const HeaderData = (escalation: PartialEscalationType) => {
   return (
@@ -57,11 +58,10 @@ const HeaderData = (escalation: PartialEscalationType) => {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <span className="font-normal text-sm">
-                    when the escalation was created
-                  </span>
+                  <span className="font-normal text-sm">creation date</span>
                 </TooltipContent>
               </Tooltip>
+              <Separator orientation="vertical" />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" disabled={false}>
@@ -112,9 +112,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <span className="font-normal text-sm">
-                  represents the de-escalation date
-                </span>
+                <span className="font-normal text-sm">de-escalation date</span>
               </TooltipContent>
             </Tooltip>
             <Tooltip>

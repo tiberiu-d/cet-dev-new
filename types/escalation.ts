@@ -2,11 +2,14 @@ import OnePager from "@/app/review/components/details/one-pager";
 
 export type EscalationType = {
   ID: string;
+  CREATION_DATE: string;
   ESCAL_DATE: string;
   DESCAL_DATE: string;
+  ESTIMATED_DESCAL_DATE: string;
   TITLE: string;
   DESCRIPTION: string;
   CUSTOMER_GROUP: string;
+  CUSTOMER_GROUP_ID: string;
   LEVEL: string;
   LEVEL_COLOR: string;
 };

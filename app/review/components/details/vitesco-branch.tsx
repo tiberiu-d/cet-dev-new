@@ -1,5 +1,7 @@
 import Leaf from "./leaf";
 
+import { format, formatDistanceToNow } from "date-fns";
+
 import type { OnePagerType } from "@/types/escalation";
 
 type VitescoBranchProps = {
@@ -8,7 +10,7 @@ type VitescoBranchProps = {
 
 const VitescoBranch = (escalation: VitescoBranchProps) => {
   return (
-    <div className="w-full flex flex-col items-start gap-2">
+    <div className="w-full flex flex-col items-start gap-2 pb-3">
       <Leaf key={"status"} LABEL="Status" VALUES={["In Progress"]} />
       <Leaf
         key={"type"}
@@ -18,7 +20,11 @@ const VitescoBranch = (escalation: VitescoBranchProps) => {
       <Leaf
         key={"modified_on"}
         LABEL="Last Modified On"
-        VALUES={["01.01.2024"]}
+        VALUES={[
+          `${formatDistanceToNow(new Date(escalation.data.CREATED_ON), {
+            addSuffix: true,
+          })}, on ${format(escalation.data.CREATED_ON, "dd.MM.yyyy")}`,
+        ]}
       />
       <Leaf
         key={"org_unit"}

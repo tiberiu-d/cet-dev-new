@@ -2,6 +2,7 @@
 import { useEscalation } from "@/hooks/useEscalation";
 // utils imports
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 // types imports
 import { EscalationType } from "@/types/escalation";
 // UI components import
@@ -35,7 +36,9 @@ const EscalationList = ({ items }: EscalationListProps) => {
             <div className="flex w-full flex-col gap-1">
               <div className="flex items-center justify-between w-full mb-2">
                 <div className="font-semibold text-xs">{item.ID}</div>
-                <div className="text-xs">from {item.ESCAL_DATE}</div>
+                <div className="text-xs">
+                  from {format(item.CREATION_DATE, "dd.MM.yyyy")}
+                </div>
               </div>
               <Separator />
               <div className="flex items-center">
@@ -51,9 +54,9 @@ const EscalationList = ({ items }: EscalationListProps) => {
                     className={cn(
                       item.LEVEL_COLOR.toLowerCase() === "y" &&
                         "bg-yellow-300 text-black hover:bg-yellow-300",
-                        item.LEVEL_COLOR.toLowerCase() === "r" &&
+                      item.LEVEL_COLOR.toLowerCase() === "r" &&
                         "bg-red-500 text-white hover:bg-red-500",
-                        item.LEVEL_COLOR.toLowerCase() === "n" &&
+                      item.LEVEL_COLOR.toLowerCase() === "n" &&
                         "bg-neutral-400 text-white hover:bg-neutral-400",
                       "font-thin text-xs"
                     )}
@@ -65,7 +68,7 @@ const EscalationList = ({ items }: EscalationListProps) => {
                 <div>
                   <Badge variant="secondary">
                     <Calendar className="w-3 h-3 mr-2" />
-                    {item.DESCAL_DATE}
+                    {format(item.DESCAL_DATE, "dd.MM.yyyy")}
                   </Badge>
                 </div>
               </div>

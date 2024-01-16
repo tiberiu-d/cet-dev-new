@@ -2,6 +2,9 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
+// additional fn
+import { format } from "date-fns";
+
 // types import
 import { EscalationType } from "@/types/escalation";
 
@@ -21,10 +24,14 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
           ID={escalation.ID}
           TITLE={escalation.TITLE}
           DESCRIPTION={escalation.DESCRIPTION}
-          ESCAL_DATE={escalation.ESCAL_DATE}
-          DESCAL_DATE={escalation.DESCAL_DATE}
+          CREATION_DATE={format(escalation.CREATION_DATE, "dd.MM.yyyy")}
+          ESCAL_DATE={format(escalation.ESCAL_DATE, "dd.MM.yyyy")}
+          DESCAL_DATE={format(escalation.DESCAL_DATE, "dd.MM.yyyy")}
+          ESTIMATED_DESCAL_DATE={format(escalation.ESTIMATED_DESCAL_DATE, "dd.MM.yyyy")}
           LEVEL={escalation.LEVEL}
           LEVEL_COLOR={escalation.LEVEL_COLOR}
+          CUSTOMER_GROUP_ID={escalation.CUSTOMER_GROUP_ID}
+          CUSTOMER_GROUP={escalation.CUSTOMER_GROUP}
         />
         <Tabs
           className="flex flex-col items-center overflow-hidden relative"

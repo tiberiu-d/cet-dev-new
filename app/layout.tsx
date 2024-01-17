@@ -28,13 +28,13 @@ export default function RootLayout({
     <html lang="en" className={font.className}>
       <body>
         <ConfigProvider theme={theme}>
-          <main className="h-screen flex flex-col p-10 subpixel-antialiased">
+          <main className="h-screen flex flex-col p-5 subpixel-antialiased">
             <Card className="flex flex-col gap-2 shadow-lg h-full">
               <TooltipProvider>
                 <CardHeader className="p-0">
                   <MenuBar />
                 </CardHeader>
-                <CardContent className="flex p-3 overflow-y-auto h-full">
+                <CardContent className="flex p-2 overflow-y-auto h-full">
                   <StyledComponentsRegistry>
                     <TanstackProvider>{children}</TanstackProvider>
                   </StyledComponentsRegistry>

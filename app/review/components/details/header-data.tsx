@@ -34,7 +34,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div>
-                    <Badge className="hover:cursor-help hover:bg-blue-200 py-1 px-2 bg-blue-100 text-black">
+                    <Badge className="hover:cursor-help hover:bg-blue-200 hover:border hover:border-gray-700 py-1 px-2 bg-blue-100 text-black">
                       {escalation.ID}
                     </Badge>
                   </div>
@@ -53,7 +53,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
                   <div>
                     <Badge
                       variant="secondary"
-                      className="hover:cursor-help py-1 px-2"
+                      className="hover:cursor-help py-1 px-2 hover:border hover:border-gray-700"
                     >
                       <Clock className="h-4 w-4 mr-2" />
                       <span>{escalation.CREATION_DATE}</span>
@@ -93,7 +93,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
                         "bg-red-500 text-white hover:bg-red-500",
                       escalation.LEVEL_COLOR?.toLowerCase() === "n" &&
                         "bg-neutral-400 text-white hover:bg-neutral-400",
-                      "font-thin text-xs hover:cursor-help px-2 py-1"
+                      "font-thin text-xs hover:cursor-help hover:border hover:border-gray-700 px-2 py-1"
                     )}
                   >
                     {escalation.LEVEL}
@@ -111,7 +111,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
                 <div>
                   <Badge
                     variant="outline"
-                    className="hover:cursor-help px-2 py-1"
+                    className="hover:cursor-help hover:border hover:border-gray-700 hover:bg-gray-100 px-2 py-1"
                   >
                     {escalation.DESCAL_DATE}
                   </Badge>
@@ -126,7 +126,7 @@ const HeaderData = (escalation: PartialEscalationType) => {
                 <div>
                   <Badge
                     variant="outline"
-                    className="hover:cursor-help px-2 py-1 border-red-500"
+                    className="hover:cursor-help hover:bg-red-100 px-2 py-1 border-red-500"
                   >
                     {escalation.ESTIMATED_DESCAL_DATE}
                   </Badge>

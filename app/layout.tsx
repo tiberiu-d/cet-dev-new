@@ -19,6 +19,8 @@ import { ConfigProvider } from "antd";
 import TanstackProvider from "@/providers/TanstackProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: {
@@ -42,6 +44,7 @@ export default function RootLayout({
               </TooltipProvider>
             </Card>
           </main>
+          <Toaster position="bottom-center" />
         </ConfigProvider>
       </body>
     </html>

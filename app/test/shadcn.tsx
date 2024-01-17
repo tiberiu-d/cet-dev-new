@@ -1,25 +1,28 @@
 "use client";
 
+import axios from "axios";
+import { useSearchParams } from "@/hooks/useSearch";
+
 // libs
 import * as z from "zod";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 // components
-import { Separator } from "@/components/ui/separator";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -27,8 +30,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { group } from "console";
+} from "@/components/ui/select";
+
+// icons
+import { SaveAllIcon } from "lucide-react";
 
 // types
 type CustomerType = {
@@ -49,89 +54,163 @@ type ShadcnFormProps = {
 
 // form schema
 const formSchema = z.object({
-  group: z.string(),
-  level: z.string(),
-  color: z.string(),
-  explanation: z.string(),
-})
+  GROUP_ID: z.string().min(2, {
+    message: "please select a customer group for the new level",
+  }),
+  VALUE: z.string().min(1, {
+    message: "please give the new level a proper name",
+  }),
+  LABEL: z.string().min(1, {
+    message: "please assign a color / urgency to the new level",
+  }),
+  EXPLANATION: z.string(),
+});
 
 const ShadcnForm = ({ customers, colors }: ShadcnFormProps) => {
+  const [params, setParams] = useSearchParams();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      group: "",
-      level: "",
-      color: "",
-      explanation: "",
+      GROUP_ID: "",
+      LABEL: "",
+      VALUE: "",
+      EXPLANATION: "",
     },
-  })
+  });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const API_SERVER = `${params.target}/api/masterdata/level`;
+    try {
+      const response = await axios.post(API_SERVER, values);
+      if (response) {
+        toast.success("Successfully created!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    form.reset();
   };
 
-  if (customers && colors) return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-      <div className={`w-4 h-4 rounded-full bg-[#D7004B]`} />
-        <FormField
-          control={form.control}
-          name="level"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Escalation Level</FormLabel>
-              <FormControl>
-                <Input placeholder="..." {...field}/>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField control={form.control} name="group" render={({field})=>(
-          <FormItem>
-            <FormLabel>Customer Group</FormLabel>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select one..." />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {customers.map((elem)=>
-                <SelectItem key={elem.label} value={elem.value}>{elem.label}</SelectItem>)}
-              </SelectContent>
-            </Select>
-          </FormItem>
-        )}/>
-        <FormField control={form.control} name="color" render={({field})=>(
-          <FormItem>
-            <FormLabel>Level Color</FormLabel>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select one..." />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {colors.map((elem)=> {
-                  console.log(`w-4 h-4 rounded-full bg-[${elem.code}]`);
-                  return (
-                    <SelectItem key={elem.label} value={elem.value} className="flex items-center justify-between gap-5">
-                      <div className={`w-4 h-4 rounded-full bg-[${elem.code}]`}>{elem.code}</div>
-                      <div>{elem.label}</div>
-                    </SelectItem>
-                  )
-                })}
-              </SelectContent>
-            </Select>
-          </FormItem>
-        )}/>
-        <Separator className="my-5"/>
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
-  )
+  if (customers && colors)
+    return (
+      <Card className="px-4 py-4 w-[420px]">
+        <CardHeader className="pb-4 px-2 pt-0 text-lg font-bold">
+          New Escalation Level v2
+        </CardHeader>
+        <CardDescription className="pb-4 px-2 pt-2 text-justify">
+          Please take the time to properly add a new escalation level. Errors
+          will be higlighted and you can only save once you fixed them all.
+        </CardDescription>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
+            <Card className="p-4 shadow-lg bg-slate-50">
+              <FormField
+                control={form.control}
+                name="GROUP_ID"
+                render={({ field }) => (
+                  <FormItem className="pb-5">
+                    <FormLabel>Customer Group</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select one..." />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {customers.map((elem) => (
+                          <SelectItem key={elem.label} value={elem.value}>
+                            {elem.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="VALUE"
+                render={({ field }) => (
+                  <FormItem className="pb-5">
+                    <FormLabel>Escalation Level</FormLabel>
+                    <FormControl className="w-[350px]">
+                      <Input placeholder="..." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="LABEL"
+                render={({ field }) => (
+                  <FormItem className="pb-5">
+                    <FormLabel>Level Color</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select one..." />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {colors.map((elem) => {
+                          return (
+                            <SelectItem key={elem.label} value={elem.value}>
+                              <div className="flex items-center justify-between gap-5">
+                                <div
+                                  style={{ backgroundColor: `${elem.code}` }}
+                                  className={cn("w-4 h-4 rounded-full border")}
+                                ></div>
+                                <div>{elem.label}</div>
+                              </div>
+                            </SelectItem>
+                          );
+                        })}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="EXPLANATION"
+                render={({ field }) => (
+                  <FormItem className="pb-5">
+                    <FormLabel>Additional Information</FormLabel>
+                    <FormControl className="w-[350px]">
+                      <Textarea
+                        placeholder="..."
+                        className="resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </Card>
+            <div className="flex items-center justify-between">
+              <Badge variant="outline">step 1 of 1</Badge>
+              <Button
+                variant="default"
+                type="submit"
+                className="flex items-center"
+              >
+                <SaveAllIcon className="h-4 w-4 mr-4" />
+                Save
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </Card>
+    );
 
-  return <div>Missing Props</div>
+  return <div>Missing Props</div>;
 };
 export default ShadcnForm;

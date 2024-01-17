@@ -23,9 +23,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import { SearchParamsType } from "@/types/search";
+
 // fetch data function
-const fetchData = async () => {
-  const TARGET = `http://localhost:1999/api/customers`;
+const fetchData = async (params: SearchParamsType) => {
+  const TARGET = `${params.target}/api/customers`;
 
   const response = await axios.get(TARGET);
   return response.data.results;
@@ -42,7 +44,7 @@ const CustomerFilter = () => {
 
   const { data: customers } = useQuery<CustomerType[]>({
     queryKey: ["customers", params],
-    queryFn: () => fetchData(),
+    queryFn: () => fetchData(params),
   });
 
   return (

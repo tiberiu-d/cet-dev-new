@@ -1,4 +1,4 @@
 const TestPage = () => {
-  return <div>test page</div>;
+  return <div>{process.env.API_SERVER}</div>;
 };
 export default TestPage;

@@ -35,12 +35,14 @@ import EscalationList from "./components/escalation-list";
 import EscalationDisplay from "./components/escalation-display";
 import AdditionalFilters from "./components/filters/additional-filters";
 
+const API_SERVER = process.env.API_SERVER;
+
 // fetch data function
-const fetchData = async ({ q, cust }: SearchParamsType) => {
+const fetchData = async ({ target, q, cust }: SearchParamsType) => {
   if (q === "") q = "all";
   if (cust === "" || cust.toLowerCase() === "all available") cust = "all";
 
-  const TARGET = `http://localhost:1999/api/sidebar_data?q=${q}&cust=${cust}`;
+  const TARGET = `${target}/api/sidebar_data?q=${q}&cust=${cust}`;
 
   const response = await axios.get(TARGET);
   return response.data.results;

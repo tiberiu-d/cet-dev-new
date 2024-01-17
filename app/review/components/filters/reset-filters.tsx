@@ -1,15 +1,9 @@
 import { Button } from "@/components/ui/button";
 
 import { useSearchParams } from "@/hooks/useSearch";
-import { SearchParamsType } from "@/types/search";
 
 const ResetFilters = () => {
   const [params, setParams] = useSearchParams();
-
-  const resetParams: SearchParamsType = {
-    q: "",
-    cust: "All available",
-  };
 
   return (
     <Button
@@ -17,7 +11,7 @@ const ResetFilters = () => {
       variant="destructive"
       className="w-1/2"
       onClick={() => {
-        setParams(resetParams);
+        setParams({ ...params, q: "", cust: "All available" });
       }}
     >
       Reset filters

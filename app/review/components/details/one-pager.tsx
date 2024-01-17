@@ -11,22 +11,28 @@ type OnePagerProps = {
 import CustomerBranch from "./customer-branch";
 import VitescoBranch from "./vitesco-branch";
 
+import { SearchParamsType } from "@/types/search";
+import { useSearchParams } from "@/hooks/useSearch";
+
 // get the data
-const getOnePagerData = async (escalationID: string): Promise<OnePagerType> => {
-  const response = await axios.get(
-    `http://localhost:1999/api/escalations/${escalationID}`
-  );
+const getOnePagerData = async (
+  escalationID: string,
+  { target }: SearchParamsType
+): Promise<OnePagerType> => {
+  const response = await axios.get(`${target}/api/escalations/${escalationID}`);
   return response.data.result[0];
 };
 
 const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
+  const [params, setParams] = useSearchParams();
+
   const {
     data: onePager,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["specificEntry", ESCALATION_ID],
-    queryFn: () => getOnePagerData(ESCALATION_ID),
+    queryKey: ["specificEntry", ESCALATION_ID, params],
+    queryFn: () => getOnePagerData(ESCALATION_ID, params),
   });
 
   if (isLoading) {

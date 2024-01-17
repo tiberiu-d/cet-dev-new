@@ -35,8 +35,6 @@ import EscalationList from "./components/escalation-list";
 import EscalationDisplay from "./components/escalation-display";
 import AdditionalFilters from "./components/filters/additional-filters";
 
-const API_SERVER = process.env.API_SERVER;
-
 // fetch data function
 const fetchData = async ({ target, q, cust }: SearchParamsType) => {
   if (q === "") q = "all";

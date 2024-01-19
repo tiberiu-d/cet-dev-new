@@ -1,14 +1,16 @@
 "use client";
 
 import axios from "axios";
+import toast from "react-hot-toast";
+
+// hooks
 import { useSearchParams } from "@/hooks/useSearch";
+import { useForm } from "react-hook-form";
 
 // libs
 import * as z from "zod";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 
 // components
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
@@ -36,20 +38,11 @@ import {
 import { SaveAllIcon } from "lucide-react";
 
 // types
-type CustomerType = {
-  label: string;
-  value: string;
-};
+import { CustomerType, ColorType } from "@/types/general";
 
-type ColorType = {
-  label: string;
-  value: string;
-  code: string;
-};
-
-type ShadcnFormProps = {
-  customers: CustomerType[];
-  colors: ColorType[];
+type NewEscalationLevelProps = {
+  customers: Partial<CustomerType>[];
+  colors: Partial<ColorType>[];
 };
 
 // form schema
@@ -66,7 +59,7 @@ const formSchema = z.object({
   EXPLANATION: z.string(),
 });
 
-const ShadcnForm = ({ customers, colors }: ShadcnFormProps) => {
+const NewEscalationLevel = ({ customers, colors }: NewEscalationLevelProps) => {
   const [params, setParams] = useSearchParams();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -96,7 +89,7 @@ const ShadcnForm = ({ customers, colors }: ShadcnFormProps) => {
     return (
       <Card className="px-4 py-4 w-[420px]">
         <CardHeader className="pb-4 px-2 pt-0 text-lg font-bold">
-          New Escalation Level v2
+          New Escalation Level
         </CardHeader>
         <CardDescription className="pb-4 px-2 pt-2 text-justify">
           Please take the time to properly add a new escalation level. Errors
@@ -163,7 +156,7 @@ const ShadcnForm = ({ customers, colors }: ShadcnFormProps) => {
                             <SelectItem key={elem.label} value={elem.value}>
                               <div className="flex items-center justify-between gap-5">
                                 <div
-                                  style={{ backgroundColor: `${elem.code}` }}
+                                  style={{ backgroundColor: `${elem.}` }}
                                   className={cn("w-4 h-4 rounded-full border")}
                                 ></div>
                                 <div>{elem.label}</div>
@@ -213,4 +206,4 @@ const ShadcnForm = ({ customers, colors }: ShadcnFormProps) => {
 
   return <div>Missing Props</div>;
 };
-export default ShadcnForm;
+export default NewEscalationLevel;

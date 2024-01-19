@@ -48,8 +48,8 @@ const fetchData = async ({ target, q, cust }: SearchParamsType) => {
 
 const EscalationsPreview = () => {
   const [escalation, setEscalation] = useEscalation();
-
   const [params, setParams] = useSearchParams();
+
   const debouncedSearchItems = useDebounce(params, 500);
 
   const { data: escalations } = useQuery<EscalationType[]>({

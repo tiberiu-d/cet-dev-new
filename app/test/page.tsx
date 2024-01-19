@@ -20,12 +20,11 @@ type ColorType = {
 };
 
 // my components
-import AntdForm from "./antd";
-import ShadcnForm from "./shadcn";
+import NewEscalationLevel from "@/components/masterdata/newLevel";
 
 // search fct for Customer Groups
-const fetchData = async (params: SearchParamsType) => {
-  const TARGET = `${params.target}/api/customers`;
+const fetchCustomers = async (params: SearchParamsType) => {
+  const TARGET = `${params.target}/api/masterdata/customers`;
 
   const response = await axios.get(TARGET);
 
@@ -41,7 +40,7 @@ const fetchData = async (params: SearchParamsType) => {
 };
 
 const fetchColors = async (params: SearchParamsType) => {
-  const TARGET = `${params.target}/api/colors`;
+  const TARGET = `${params.target}/api/masterdata/colors`;
 
   const response = await axios.get(TARGET);
   var results = [
@@ -57,7 +56,7 @@ const TestPage = () => {
 
   const { data: customers } = useQuery<CustomerType[]>({
     queryKey: ["customers", params],
-    queryFn: () => fetchData(params),
+    queryFn: () => fetchCustomers(params),
   });
 
   const { data: colors } = useQuery<ColorType[]>({
@@ -68,8 +67,7 @@ const TestPage = () => {
   if (customers && colors)
     return (
       <div className="form_container flex items-center gap-20 mx-auto">
-        <AntdForm customers={customers} colors={colors} />
-        <ShadcnForm customers={customers} colors={colors} />
+        {/* <NewEscalationLevel customers={customers} colors={colors} /> */}
       </div>
     );
 };

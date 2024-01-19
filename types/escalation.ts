@@ -1,5 +1,3 @@
-import OnePager from "@/app/review/components/details/one-pager";
-
 export type EscalationType = {
   ID: string;
   CREATION_DATE: string;

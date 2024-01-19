@@ -66,9 +66,11 @@ const MenuBar = () => {
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">
-            Masterdata
+            <Link href="/masterdata" aria-disabled>
+              Masterdata
+            </Link>
           </MenubarTrigger>
-          <MenubarContent>
+          {/* <MenubarContent>
             <MenubarItem>
               <PuzzleIcon className="h-4 w-4 mr-3" />
               New Escalation
@@ -78,7 +80,7 @@ const MenuBar = () => {
               <GitPullRequestDraft className="h-4 w-4 mr-3" />
               New Escalation Status
             </MenubarItem>
-          </MenubarContent>
+          </MenubarContent> */}
         </MenubarMenu>
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">Help</MenubarTrigger>

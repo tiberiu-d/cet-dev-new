@@ -27,7 +27,7 @@ import { SearchParamsType } from "@/types/search";
 
 // fetch data function
 const fetchData = async (params: SearchParamsType) => {
-  const TARGET = `${params.target}/api/customers`;
+  const TARGET = `${params.target}/api/masterdata/customers`;
 
   const response = await axios.get(TARGET);
   return response.data.results;

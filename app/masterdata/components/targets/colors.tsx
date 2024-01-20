@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 
 // import icons
-import { PlusCircleIcon, Trash2Icon } from "lucide-react";
+import { DeleteIcon, PlusCircleIcon, Trash2Icon } from "lucide-react";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 // hooks
@@ -36,9 +36,17 @@ import {
 import { Separator } from "@/components/ui/separator";
 import NewColor from "@/components/masterdata/postColor";
 import UpdateColor from "@/components/masterdata/updateColor";
+import { useDeleteColorByID } from "@/services/masterdata/colors/mutations";
+import toast from "react-hot-toast";
 
 const MasterdataColors = () => {
   const colorsQuery = useColors();
+  const deleteColorMutation = useDeleteColorByID();
+
+  const handleDelete = (ID: number) => {
+    deleteColorMutation.mutate(ID);
+    toast.success("Record deleted");
+  };
 
   if (colorsQuery.data)
     return (
@@ -94,6 +102,12 @@ const MasterdataColors = () => {
                           <UpdateColor ID={row.ID} />
                         </PopoverContent>
                       </Popover>
+                    </TableCell>
+                    <TableCell>
+                      <DeleteIcon
+                        className="w-4 h-4 text-red-600"
+                        onClick={() => handleDelete(row.ID)}
+                      />
                     </TableCell>
                   </TableRow>
                 </ContextMenuTrigger>

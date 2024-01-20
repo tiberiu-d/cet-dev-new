@@ -5,10 +5,7 @@ import { HexColorPicker } from "react-colorful";
 
 // hooks
 import { useForm } from "react-hook-form";
-import {
-  usePostColor,
-  useUpdateColor,
-} from "@/services/masterdata/colors/mutations";
+import { useUpdateColor } from "@/services/masterdata/colors/mutations";
 import { useColorsByID } from "@/services/masterdata/colors/queries";
 
 // libs

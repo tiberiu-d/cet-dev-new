@@ -26,3 +26,6 @@ export const updateColorByID = async (data: Partial<ColorType>) => {
 };
 
 // delete
+export const deleteColorByID = async (ID: number) => {
+  await axiosInstance.delete(`${END_POINT}/${ID}`);
+};

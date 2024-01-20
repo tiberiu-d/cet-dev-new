@@ -103,7 +103,9 @@ const MasterdataColors = () => {
     queryFn: () => fetchColors(params),
   });
 
-  if (data)
+  let records = data;
+
+  if (records)
     return (
       <div className="w-full h-full p-3 flex flex-col items-start gap-10">
         <Table>
@@ -116,7 +118,7 @@ const MasterdataColors = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((row, rowIdx) => (
+            {records?.map((row, rowIdx) => (
               <ContextMenu key={rowIdx}>
                 <ContextMenuTrigger asChild>
                   <TableRow
@@ -147,7 +149,11 @@ const MasterdataColors = () => {
                   <ContextMenuItem className="w-[150px] text-red-500">
                     <div
                       className="flex items-center gap-2"
-                      onClick={() => deleteColor(params, row.ID!)}
+                      onClick={() => {
+                        records = records!.filter((obj) => obj.ID !== row.ID);
+                        console.log(records);
+                        deleteColor(params, row.ID!);
+                      }}
                     >
                       <Trash2Icon className="w-4 h-4" />
                       <span className="text-sm">Delete</span>

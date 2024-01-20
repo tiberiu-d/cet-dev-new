@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 import { HexColorPicker } from "react-colorful";
 
 // hooks
-import { useSearchParams } from "@/hooks/useSearch";
 import { useForm } from "react-hook-form";
+import { usePostColor } from "@/services/masterdata/colors/mutations";
 
 // libs
 import * as z from "zod";
@@ -31,10 +31,6 @@ import { Input } from "@/components/ui/input";
 // icons
 import { SaveAllIcon } from "lucide-react";
 
-// types
-import { ColorType } from "@/types/general";
-import { usePostColor } from "@/services/masterdata/colors/mutations";
-
 // form schema definition
 const formSchema = z.object({
   LABEL: z.string().min(2, {
@@ -48,20 +44,29 @@ const formSchema = z.object({
   }),
 });
 
-const NewColor = () => {
+const PostColor = () => {
   const createColorMutation = usePostColor();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       LABEL: "",
-      VALUE: "",
+      VALUE: "#ffffff",
       EXPLANATION: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     createColorMutation.mutate(values);
+
+    if (createColorMutation.isSuccess) {
+      toast.success("Successfully added new Color");
+    }
+
+    if (createColorMutation.isError) {
+      toast.error("Something went wrong when saving data...");
+    }
+
     form.reset();
   };
 
@@ -133,9 +138,10 @@ const NewColor = () => {
               variant="default"
               type="submit"
               className="flex items-center"
+              disabled={createColorMutation.isPending}
             >
               <SaveAllIcon className="h-4 w-4 mr-4" />
-              Save
+              {createColorMutation.isPending ? "Saving..." : "Save"}
             </Button>
           </div>
         </form>
@@ -143,4 +149,4 @@ const NewColor = () => {
     </>
   );
 };
-export default NewColor;
+export default PostColor;

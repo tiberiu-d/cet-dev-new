@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ColorType } from "@/types/masterdata";
 
 // fct
-import { postColor } from "./api";
+import { postColor, updateColorByID } from "./api";
 
 export function usePostColor() {
   const queryClient = useQueryClient();
@@ -23,6 +23,26 @@ export function usePostColor() {
         await queryClient.invalidateQueries({
           queryKey: ["allColors"],
         });
+      }
+    },
+  });
+}
+
+export function useUpdateColor() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: ["updateColor"],
+
+    mutationFn: (data: ColorType) => updateColorByID(data),
+
+    onMutate: (data: ColorType) => console.log(data),
+
+    onSettled: async (_, error, variables) => {
+      if (error) {
+        console.log("[color] error updating color: " + error);
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ["allColors"] });
       }
     },
   });

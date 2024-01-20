@@ -9,3 +9,11 @@ export function useColors() {
     queryFn: getColors,
   });
 }
+
+// getColorsByID
+export function useColorsByID(ID:number) {
+  return useQuery({
+    queryKey: ["singleColor", ID],
+    queryFn: () => getColorByID(ID)
+  });
+}

@@ -3,18 +3,10 @@ import { Button } from "@/components/ui/button";
 
 // import icons
 import { PlusCircleIcon, Trash2Icon } from "lucide-react";
-
-//libs
-import axios from "axios";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 // hooks
-import { useSearchParams } from "@/hooks/useSearch";
-import { useQuery } from "@tanstack/react-query";
-
-// types
-import type { TableProps } from "antd";
-import { SearchParamsType } from "@/types/search";
-import { PartialColorType } from "@/types/masterdata";
+import { useColors } from "@/services/masterdata/colors/queries";
 
 // 3rd party
 import {
@@ -42,26 +34,8 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { Separator } from "@/components/ui/separator";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import NewColor from "@/components/masterdata/newColor";
-import { useColors } from "@/services/masterdata/colors/queries";
-
-const fetchColors = async ({ target }: Partial<SearchParamsType>) => {
-  const TARGET = `${target}/api/masterdata/colors`;
-
-  const response = await axios.get(TARGET);
-  return response.data;
-};
-
-const deleteColor: any = async (
-  { target }: Partial<SearchParamsType>,
-  ID: number
-) => {
-  const TARGET = `${target}/api/masterdata/colors/${ID}`;
-
-  const response = await axios.delete(TARGET);
-  console.log(response.data);
-};
+import NewColor from "@/components/masterdata/postColor";
+import UpdateColor from "@/components/masterdata/updateColor";
 
 const MasterdataColors = () => {
   const colorsQuery = useColors();
@@ -108,6 +82,19 @@ const MasterdataColors = () => {
                       </div>
                     </TableCell>
                     <TableCell>{row.EXPLANATION}</TableCell>
+                    <TableCell>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button className="flex items-center gap-2">
+                            <PlusCircleIcon className="w-4 h-4" />
+                            <span className="text-sm">Edit Record</span>
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="shadow-xl flex flex-col w-[420px]">
+                          <UpdateColor ID={row.ID} />
+                        </PopoverContent>
+                      </Popover>
+                    </TableCell>
                   </TableRow>
                 </ContextMenuTrigger>
                 <ContextMenuContent className="flex flex-col gap-1">

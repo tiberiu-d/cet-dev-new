@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import toast from "react-hot-toast";
-import { TwitterPicker } from "react-color";
+import { HexColorPicker } from "react-colorful";
 
 // hooks
 import { useSearchParams } from "@/hooks/useSearch";
@@ -33,6 +33,7 @@ import { SaveAllIcon } from "lucide-react";
 
 // types
 import { ColorType } from "@/types/general";
+import { usePostColor } from "@/services/masterdata/colors/mutations";
 
 // form schema definition
 const formSchema = z.object({
@@ -48,7 +49,7 @@ const formSchema = z.object({
 });
 
 const NewColor = () => {
-  const [params, setParams] = useSearchParams();
+  const createColorMutation = usePostColor();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,18 +60,9 @@ const NewColor = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const TARGET = `${params.target}/api/masterdata/colors`;
-
-    try {
-      const response = await axios.post(TARGET, values);
-      if (response) {
-        toast.success("New Color added");
-        form.reset();
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    createColorMutation.mutate(values);
+    form.reset();
   };
 
   return (
@@ -106,10 +98,11 @@ const NewColor = () => {
               render={({ field }) => (
                 <FormItem className="pb-5">
                   <FormLabel>Hex-code Value</FormLabel>
-                  <FormControl className="w-[350px]">
-                    <TwitterPicker
+                  <FormControl>
+                    <HexColorPicker
+                      style={{ width: "100%" }}
                       color={field.value}
-                      onChange={(color: any) => field.onChange(color.hex)}
+                      onChange={(color: any) => field.onChange(color)}
                     />
                   </FormControl>
                   <FormMessage />

@@ -3,20 +3,20 @@ export type MasterdataParamsType = {
 };
 
 // colors
-export type MasterdataColorType = {
+export type ColorType = {
   ID: number;
   LABEL: string;
   VALUE: string;
   EXPLANATION: string;
 };
-export type PartialMasterdataColorType = Partial<MasterdataColorType>;
+export type PartialColorType = Partial<ColorType>;
 
 // levels
-export type MasterdataLevelType = {
+export type LevelType = {
   ID: number;
   GROUP_ID: string;
   COLOR_ID: number;
   VALUE: string;
   EXPLANATION: string;
 };
-export type PartialMasterdataLevelType = Partial<MasterdataLevelType>;
+export type PartialLevelType = Partial<LevelType>;

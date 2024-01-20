@@ -87,121 +87,123 @@ const NewEscalationLevel = ({ customers, colors }: NewEscalationLevelProps) => {
 
   if (customers && colors)
     return (
-      <Card className="px-4 py-4 w-[420px]">
-        <CardHeader className="pb-4 px-2 pt-0 text-lg font-bold">
-          New Escalation Level
-        </CardHeader>
-        <CardDescription className="pb-4 px-2 pt-2 text-justify">
-          Please take the time to properly add a new escalation level. Errors
-          will be higlighted and you can only save once you fixed them all.
-        </CardDescription>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-5"
-          >
-            <Card className="p-4 shadow-lg bg-slate-50">
-              <FormField
-                control={form.control}
-                name="GROUP_ID"
-                render={({ field }) => (
-                  <FormItem className="pb-5">
-                    <FormLabel>Customer Group</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select one..." />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {customers.map((elem) => (
-                          <SelectItem key={elem.label} value={elem.value}>
-                            {elem.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="VALUE"
-                render={({ field }) => (
-                  <FormItem className="pb-5">
-                    <FormLabel>Escalation Level</FormLabel>
-                    <FormControl className="w-[350px]">
-                      <Input placeholder="..." {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="LABEL"
-                render={({ field }) => (
-                  <FormItem className="pb-5">
-                    <FormLabel>Level Color</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select one..." />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {colors.map((elem) => {
-                          return (
-                            <SelectItem key={elem.label} value={elem.value}>
-                              <div className="flex items-center justify-between gap-5">
-                                <div
-                                  style={{ backgroundColor: `${elem.}` }}
-                                  className={cn("w-4 h-4 rounded-full border")}
-                                ></div>
-                                <div>{elem.label}</div>
-                              </div>
-                            </SelectItem>
-                          );
-                        })}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="EXPLANATION"
-                render={({ field }) => (
-                  <FormItem className="pb-5">
-                    <FormLabel>Additional Information</FormLabel>
-                    <FormControl className="w-[350px]">
-                      <Textarea
-                        placeholder="..."
-                        className="resize-none"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </Card>
-            <div className="flex items-center justify-between">
-              <Badge variant="outline">step 1 of 1</Badge>
-              <Button
-                variant="default"
-                type="submit"
-                className="flex items-center"
-              >
-                <SaveAllIcon className="h-4 w-4 mr-4" />
-                Save
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </Card>
+      <>work in progress...</>
+
+      // <Card className="px-4 py-4 w-[420px]">
+      //   <CardHeader className="pb-4 px-2 pt-0 text-lg font-bold">
+      //     New Escalation Level
+      //   </CardHeader>
+      //   <CardDescription className="pb-4 px-2 pt-2 text-justify">
+      //     Please take the time to properly add a new escalation level. Errors
+      //     will be higlighted and you can only save once you fixed them all.
+      //   </CardDescription>
+      //   <Form {...form}>
+      //     <form
+      //       onSubmit={form.handleSubmit(onSubmit)}
+      //       className="flex flex-col gap-5"
+      //     >
+      //       <Card className="p-4 shadow-lg bg-slate-50">
+      //         <FormField
+      //           control={form.control}
+      //           name="GROUP_ID"
+      //           render={({ field }) => (
+      //             <FormItem className="pb-5">
+      //               <FormLabel>Customer Group</FormLabel>
+      //               <Select onValueChange={field.onChange} value={field.value}>
+      //                 <FormControl>
+      //                   <SelectTrigger>
+      //                     <SelectValue placeholder="Select one..." />
+      //                   </SelectTrigger>
+      //                 </FormControl>
+      //                 <SelectContent>
+      //                   {customers.map((elem) => (
+      //                     <SelectItem key={elem.label} value={elem.value}>
+      //                       {elem.label}
+      //                     </SelectItem>
+      //                   ))}
+      //                 </SelectContent>
+      //               </Select>
+      //               <FormMessage />
+      //             </FormItem>
+      //           )}
+      //         />
+      //         <FormField
+      //           control={form.control}
+      //           name="VALUE"
+      //           render={({ field }) => (
+      //             <FormItem className="pb-5">
+      //               <FormLabel>Escalation Level</FormLabel>
+      //               <FormControl className="w-[350px]">
+      //                 <Input placeholder="..." {...field} />
+      //               </FormControl>
+      //               <FormMessage />
+      //             </FormItem>
+      //           )}
+      //         />
+      //         <FormField
+      //           control={form.control}
+      //           name="LABEL"
+      //           render={({ field }) => (
+      //             <FormItem className="pb-5">
+      //               <FormLabel>Level Color</FormLabel>
+      //               <Select onValueChange={field.onChange} value={field.value}>
+      //                 <FormControl>
+      //                   <SelectTrigger>
+      //                     <SelectValue placeholder="Select one..." />
+      //                   </SelectTrigger>
+      //                 </FormControl>
+      //                 <SelectContent>
+      //                   {colors.map((elem) => {
+      //                     return (
+      //                       <SelectItem key={elem.label} value={elem.value}>
+      //                         <div className="flex items-center justify-between gap-5">
+      //                           <div
+      //                             style={{ backgroundColor: `${elem.}` }}
+      //                             className={cn("w-4 h-4 rounded-full border")}
+      //                           ></div>
+      //                           <div>{elem.label}</div>
+      //                         </div>
+      //                       </SelectItem>
+      //                     );
+      //                   })}
+      //                 </SelectContent>
+      //               </Select>
+      //               <FormMessage />
+      //             </FormItem>
+      //           )}
+      //         />
+      //         <FormField
+      //           control={form.control}
+      //           name="EXPLANATION"
+      //           render={({ field }) => (
+      //             <FormItem className="pb-5">
+      //               <FormLabel>Additional Information</FormLabel>
+      //               <FormControl className="w-[350px]">
+      //                 <Textarea
+      //                   placeholder="..."
+      //                   className="resize-none"
+      //                   {...field}
+      //                 />
+      //               </FormControl>
+      //               <FormMessage />
+      //             </FormItem>
+      //           )}
+      //         />
+      //       </Card>
+      //       <div className="flex items-center justify-between">
+      //         <Badge variant="outline">step 1 of 1</Badge>
+      //         <Button
+      //           variant="default"
+      //           type="submit"
+      //           className="flex items-center"
+      //         >
+      //           <SaveAllIcon className="h-4 w-4 mr-4" />
+      //           Save
+      //         </Button>
+      //       </div>
+      //     </form>
+      //   </Form>
+      // </Card>
     );
 
   return <div>Missing Props</div>;

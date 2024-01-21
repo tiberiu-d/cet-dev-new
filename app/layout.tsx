@@ -21,6 +21,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { Toaster } from "react-hot-toast";
 
+import ColorModal from "@/components/masterdata/colors/color-modal";
+
 export default function RootLayout({
   children,
 }: {
@@ -38,7 +40,12 @@ export default function RootLayout({
                 </CardHeader>
                 <CardContent className="flex p-2 overflow-y-auto h-full">
                   <StyledComponentsRegistry>
-                    <TanstackProvider>{children}</TanstackProvider>
+                    <TanstackProvider>
+                      {/* Modals */}
+                      {/* <ColorModal /> */}
+                      {/* Rest of the Things */}
+                      {children}
+                    </TanstackProvider>
                   </StyledComponentsRegistry>
                 </CardContent>
               </TooltipProvider>

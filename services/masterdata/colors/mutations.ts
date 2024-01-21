@@ -14,11 +14,11 @@ export function usePostColor() {
 
     mutationFn: (data: Partial<ColorType>) => postColor(data),
 
-    onError: (error) => console.log("[color] mutation error: " + error),
+    onError: (error) => console.log("[color] create mutation error: " + error),
 
     onSettled: async (_, error) => {
       if (error) {
-        console.log("[color] error on settled: " + error);
+        console.log("[color] create error on settled: " + error);
       } else {
         await queryClient.invalidateQueries({
           queryKey: ["allColors"],
@@ -34,13 +34,12 @@ export function useUpdateColor() {
   return useMutation({
     mutationKey: ["updateColor"],
 
-    mutationFn: (data: ColorType) => updateColorByID(data),
-
-    onMutate: (data: ColorType) => console.log(data),
+    mutationFn: (data: Partial<ColorType>) => updateColorByID(data),
 
     onSettled: async (_, error, variables) => {
       if (error) {
         console.log("[color] error updating color: " + error);
+        console.log(variables);
       } else {
         await queryClient.invalidateQueries({ queryKey: ["allColors"] });
       }

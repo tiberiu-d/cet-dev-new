@@ -20,8 +20,6 @@ export const getColorByID = async (ID: number) => {
 
 // update
 export const updateColorByID = async (data: Partial<ColorType>) => {
-  console.log("PUT");
-  console.log(data);
   await axiosInstance.put(`${END_POINT}/${data.ID}`, data);
 };
 

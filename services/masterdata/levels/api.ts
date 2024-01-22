@@ -3,7 +3,7 @@ import { axiosInstance } from "@/services/settings";
 // API target endpoint
 const END_POINT = "masterdata/levels";
 // types
-import type { LevelType } from "@/types/masterdata";
+import type { LevelType, LevelVizType } from "@/types/masterdata";
 
 // -----------------
 // CRUD operations
@@ -14,7 +14,7 @@ const postLevel = async (data: Partial<LevelType>) => {
 };
 
 const getLevels = async () => {
-  return (await axiosInstance.get<LevelType>(`${END_POINT}`)).data;
+  return (await axiosInstance.get<LevelVizType[]>(`${END_POINT}`)).data;
 };
 
 const getLevelsByID = async (ID: number) => {

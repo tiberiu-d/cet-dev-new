@@ -31,7 +31,6 @@ import { Input } from "@/components/ui/input";
 
 // icons
 import { SaveAllIcon } from "lucide-react";
-import { ColorType } from "@/types/masterdata";
 
 // form schema definition
 const formSchema = z.object({

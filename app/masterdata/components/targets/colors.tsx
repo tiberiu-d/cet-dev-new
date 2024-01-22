@@ -9,13 +9,6 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useColors, useColorsByID } from "@/services/masterdata/colors/queries";
 import useColorModal from "@/hooks/modals/useColorModal";
 
-// 3rd party
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
 // shadcn
 import {
   Table,
@@ -35,8 +28,6 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { Separator } from "@/components/ui/separator";
-import NewColor from "@/components/masterdata/postColor";
-import UpdateColor from "@/components/masterdata/updateColor";
 import { useDeleteColorByID } from "@/services/masterdata/colors/mutations";
 import toast from "react-hot-toast";
 import ColorModal from "@/components/masterdata/colors/color-modal";

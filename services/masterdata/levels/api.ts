@@ -10,7 +10,7 @@ import type { LevelType, LevelVizType } from "@/types/masterdata";
 // -----------------
 
 const postLevel = async (data: Partial<LevelType>) => {
-  console.log("trying to POST data");
+  await axiosInstance.post(`${END_POINT}`, data);
 };
 
 const getLevels = async () => {

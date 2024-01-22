@@ -14,7 +14,9 @@ export type PartialColorType = Partial<ColorType>;
 // levels
 export type LevelVizType = {
   ID: number;
+  GROUP_ID: string;
   GROUP_NAME: string;
+  COLOR_ID: string;
   COLOR_VALUE: string;
   COLOR_LABEL: string;
   COLOR_EXPLANATION: string;
@@ -25,7 +27,7 @@ export type LevelVizType = {
 export type LevelType = {
   ID: number;
   GROUP_ID: string;
-  COLOR_ID: number;
+  COLOR_ID: string;
   VALUE: string;
   EXPLANATION: string;
 };

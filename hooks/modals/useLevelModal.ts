@@ -7,7 +7,7 @@ interface LevelModalStore {
   defaultValues: {
     ID: number;
     GROUP_ID: string;
-    COLOR_ID: number;
+    COLOR_ID: string;
     VALUE: string;
     EXPLANATION: string;
   };
@@ -20,7 +20,7 @@ const useLevelModal = create<LevelModalStore>((set) => ({
   defaultValues: {
     ID: 0,
     GROUP_ID: "",
-    COLOR_ID: 0,
+    COLOR_ID: "",
     VALUE: "",
     EXPLANATION: "",
   },

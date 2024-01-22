@@ -67,7 +67,7 @@ const TestPage = () => {
   if (customers && colors)
     return (
       <div className="form_container flex items-center gap-20 mx-auto">
-        {/* <NewEscalationLevel customers={customers} colors={colors} /> */}
+        <NewEscalationLevel />
       </div>
     );
 };

@@ -3,7 +3,7 @@ import { useMasterdata } from "@/hooks/useMasterdata";
 
 // additional components
 import MasterdataColors from "./targets/colors";
-import MasterdataQCAMs from "./targets/qcams";
+import MasterdataQCAMs from "@/components/masterdata/qcams/pages/main";
 import MasterdataLevels from "./targets/levels";
 
 const MasterdataDisplay = () => {

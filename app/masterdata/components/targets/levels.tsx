@@ -88,7 +88,9 @@ const MasterdataLevels = () => {
             <span className="text-sm">New Record</span>
           </Button>
           <Table>
-            <TableCaption>A list of all available color codes.</TableCaption>
+            <TableCaption>
+              A list of all available escalation levels.
+            </TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead>Customer Group</TableHead>

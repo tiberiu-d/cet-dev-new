@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/common/table/table.jsx"
+    // stoopid thing that sucks because of react-select
+    "components/masterdata/qcams/pages/modal/QCAM-modal-form.jsx"
   ],
   "exclude": ["node_modules"]
 }

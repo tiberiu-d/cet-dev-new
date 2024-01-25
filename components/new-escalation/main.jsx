@@ -4,10 +4,13 @@
 import StepOne from "./steps/step-one";
 import StepTwo from "./steps/step-two";
 import StepThree from "./steps/step-three";
+import StepFour from "./steps/step-four";
 
 // hooks
 import { useMultistepForm } from "./hooks/useMultistepForm";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
+import { useForm, Controller } from "react-hook-form";
+import useEscalStore from "./store/useEscalStore";
 
 // UI
 import { Button } from "@/components/ui/button";
@@ -17,7 +20,6 @@ import {
   CardContent,
   CardHeader,
 } from "@/components/ui/card";
-import StepFour from "./steps/step-four";
 
 // icons
 import { ChevronRightSquare, ChevronLeftSquare, SaveAll } from "lucide-react";
@@ -30,6 +32,11 @@ import FormFeedback from "./components/feedback";
 import { INITIAL_DATA } from "./config";
 
 const MultistepForm = () => {
+  const escalationInstance = useEscalStore();
+  const { control, register, handleSubmit, watch, formState } = useForm({
+    defaultValues: escalationInstance.defaultValues,
+  });
+
   // states
   const [isValid, setIsValid] = useState(true);
   const [data, setData] = useState(INITIAL_DATA);
@@ -50,11 +57,23 @@ const MultistepForm = () => {
     console.log(data);
   };
 
+  const mySubmitFunction = (values) => {
+    console.log(values);
+  };
+
   // config
   const formSteps = [
     {
       title: "basic info",
-      component: <StepOne key={1} {...data} updateFields={updateFields} />,
+      component: (
+        <StepOne
+          key={1}
+          control={control}
+          register={register}
+          formData={watch()}
+          formState={formState}
+        />
+      ),
     },
     // {
     //   title: "customer info",
@@ -73,7 +92,7 @@ const MultistepForm = () => {
 
   return (
     <div className="bg-neutral-100/70 backdrop-blur-xs fixed inset-0 w-full h-full flex items-center justify-center z-[2]">
-      <form onSubmit={onSubmit} className="z-[3]">
+      <form onSubmit={handleSubmit(mySubmitFunction)} className="z-[3]">
         <Card className="main-card flex flex-col justify-between rounded-xl shadow-2xl border-2 border-gray-200">
           <div className="flex flex-col">
             <CardHeader className="relative flex flex-row items-center justify-between bg-cyan-50 border-b-2 border-gray-200 rounded-t-xl">

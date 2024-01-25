@@ -6,11 +6,12 @@ import { Controller } from "react-hook-form";
 import { useState, useEffect } from "react";
 
 import FormWrapper from "../components/wrapper";
+import "react-calendar/dist/Calendar.css";
 
 // UI components
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
+// import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -31,168 +32,113 @@ import {
   SelectValue,
   SelectLabel,
 } from "@/components/ui/select";
+import DatePicker from "react-date-picker";
+import Calendar from "react-calendar";
 
-const StepOne = ({
-  escal_status,
-  escal_date,
-  type,
-  title,
-  description,
-  recurrence,
-  descal_date,
-  updateFields,
-}) => {
-  const [dateEscal, setDateEscal] = useState("");
-  const [dateDescal, setDateDescal] = useState("");
-
-  useEffect(() => {
-    setDateEscal(escal_date);
-    setDateDescal(descal_date);
-  }, [escal_date, descal_date]);
-
-  const escal_dateFn = (value) => {
-    setDateEscal(value);
-    updateFields({ escal_date: dayjs(value).format("DD.MM.YYYY") });
-  };
-  const descal_dateFn = (value) => {
-    setDateDescal(value);
-    updateFields({ descal_date: dayjs(value).format("DD.MM.YYYY") });
-  };
-
+const StepOne = ({ control, register, formData, formState }) => {
   return (
     <FormWrapper>
-      <div className="text-sm">
-        <div className="row-1 row grid grid-cols-4 gap-5">
-          <div className="formBox">
-            <Label>Escalation Status</Label>
-            <Select
-              name="escal_status"
-              value={escal_status}
-              onValueChange={(value) => updateFields({ escal_status: value })}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="select one..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="open">Open</SelectItem>
-                <SelectItem value="in_progress">In Progress</SelectItem>
-                <SelectItem value="closed">Closed</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="formBox">
-            <Label>
-              Escalation Type{" "}
-              <span className="text-xs">
-                (<span className="font-bold text-red-500">*</span>)
-              </span>
-            </Label>
-            <Select
-              name="type"
-              value={type}
-              onValueChange={(value) => updateFields({ type: value })}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="select one..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="0km">0km</SelectItem>
-                <SelectItem value="0km&field">0km and Field</SelectItem>
-                <SelectItem value="audit">Audit</SelectItem>
-                <SelectItem value="development">Development</SelectItem>
-                <SelectItem value="field">Field</SelectItem>
-                <SelectItem value="launch">Launch</SelectItem>
-                <SelectItem value="logistics">Logistics</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="formBox">
-            <Label>
-              Escalation Date{" "}
-              <span className="text-xs">
-                (<span className="font-bold text-red-500">*</span>)
-              </span>
-            </Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className="w-full justify-start text-left font-normal"
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {escal_date ? escal_date : <span>select one...</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  required
-                  mode="single"
-                  selected={dateEscal}
-                  onSelect={escal_dateFn}
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="formBox">
-            <Label>De-Escalation Date</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className="w-full justify-start text-left font-normal"
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {descal_date ? descal_date : <span>select one...</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  required
-                  mode="single"
-                  selected={dateDescal}
-                  onSelect={descal_dateFn}
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
+      <div className="grid grid-cols-4 gap-5">
+        {/* TITLE */}
+        <div className="flex flex-col gap-3">
+          <Label htmlFor="TITLE">Escalation Title</Label>
+          <Input
+            {...register("TITLE", {
+              required: "what, no title?!",
+              minLength: {
+                value: 5,
+                message: "an escalation title must have at least 5 characters",
+              },
+            })}
+            name="TITLE"
+            type="text"
+            placeholder="..."
+          />
+          {formState.errors.TITLE && (
+            <div className="text-red-500">{formState.errors.TITLE.message}</div>
+          )}
         </div>
-        <div className="row-2 row grid grid-cols-4 gap-5 mt-6">
-          <div className="col-span-2">
-            <div className="cell1 formBox2">
-              <Label>
-                Escalation Title{" "}
-                <span className="text-xs">
-                  (<span className="font-bold text-red-500">*</span>)
-                </span>
-              </Label>
+        {/* DESCRIPTION */}
+        <div className="flex flex-col gap-3">
+          <Label htmlFor="DESCRIPTION">Escalation Description</Label>
+          <Input
+            {...register("DESCRIPTION", {
+              required: "what, no description?!",
+              minLength: {
+                value: 5,
+                message:
+                  "an escalation description must have at least 5 characters",
+              },
+            })}
+            name="DESCRIPTION"
+            type="text"
+            placeholder="..."
+          />
+          {formState.errors.DESCRIPTION && (
+            <div className="text-red-500">
+              {formState.errors.DESCRIPTION.message}
+            </div>
+          )}
+        </div>
+        {/* STATUS */}
+        <div className="flex flex-col gap-3">
+          <Label htmlFor="STATUS" className="w-full">
+            Escalation Status
+          </Label>
+          <Controller
+            {...register("STATUS", {
+              required: "we need a status for this escalation",
+            })}
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="select one..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="open">In Progress</SelectItem>
+                  <SelectItem value="closed">Closed</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
+        </div>
+        {/* ESCAL_DATE */}
+        <div className="flex flex-col gap-3">
+          <Label htmlFor="ESCAL_DATE">Escalation Date</Label>
+          <Controller
+            control={control}
+            {...register("ESCAL_DATE", {
+              required: "we need the escalation date",
+            })}
+            render={({ field }) => (
               <Input
-                value={title}
-                placeholder="type value..."
-                onChange={(field) =>
-                  updateFields({ title: field.target.value })
-                }
+                {...field}
+                type="date"
+                value={field.value}
+                onChangeCapture={field.onChange}
               />
-            </div>
-            <div className="cell2 flex items-center gap-5 mt-5">
-              <Label>Is recurring?</Label>
+            )}
+          />
+        </div>
+        {/* boolean stuff */}
+        <div className="flex flex-col gap-3">
+          <Label htmlFor="RECURRING">Recurring?</Label>
+          <Controller
+            control={control}
+            {...register("RECURRING")}
+            render={({ field }) => (
               <Switch
-                checked={recurrence}
-                onCheckedChange={(field) => updateFields({ recurrence: field })}
+                {...field}
+                value={field.value}
+                onChange={field.onChange}
               />
-            </div>
-          </div>
-          <div className="col-span-2 formBox2">
-            <Label>Escalation Description</Label>
-            <Textarea
-              rows={13}
-              value={description}
-              placeholder="type value..."
-              onChange={(field) =>
-                updateFields({ description: field.target.value })
-              }
-            />
-          </div>
+            )}
+          />
         </div>
       </div>
     </FormWrapper>

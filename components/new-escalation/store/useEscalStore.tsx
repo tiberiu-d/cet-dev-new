@@ -26,7 +26,7 @@ const useEscalStore = create<EscalModalStore>((set) => ({
     ID: 0,
     STATUS: "open",
     TYPE: "",
-    ESCAL_DATE: "",
+    ESCAL_DATE: "1981-09-20",
     DESCAL_DATE: "",
     TITLE: "",
     DESCRIPTION: "",

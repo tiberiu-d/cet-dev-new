@@ -32,6 +32,13 @@ const MenuBar = () => {
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">File</MenubarTrigger>
           <MenubarContent>
+            <Link href="/new-escalation">
+              <MenubarItem>
+                <PuzzleIcon className="h-4 w-4 mr-3" />
+                Add new Escalation
+              </MenubarItem>
+            </Link>
+            <MenubarSeparator />
             <Link href="/login">
               <MenubarItem disabled>
                 <UserIcon className="h-4 w-4 mr-3" />
@@ -56,10 +63,10 @@ const MenuBar = () => {
               </MenubarItem>
             </Link>
             {/* <MenubarSeparator />
-            <Link href="/escalations">
-              <MenubarItem disabled>
-                <StickyNoteIcon className="h-4 w-4 mr-3" />
-                All Escalations
+            <Link href="/new-escalation">
+              <MenubarItem>
+                <PuzzleIcon className="h-4 w-4 mr-3" />
+                Add new Escalation
               </MenubarItem>
             </Link> */}
           </MenubarContent>

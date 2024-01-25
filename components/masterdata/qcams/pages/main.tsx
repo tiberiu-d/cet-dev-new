@@ -34,11 +34,14 @@ import { GridLoader } from "react-spinners";
 
 // my additional components
 import QCAMsModal from "./modal/QCAM-modal";
+import { useDeleteQCAMByID, usePutQCAMByID } from "../services/mutations";
+import { Item } from "@radix-ui/react-menubar";
 
 const MasterdataQCAMs = () => {
   // instantiate all hooks
   const modalInstance = useQCAMModal();
   const query_GET_QCAMs = useGetQCAMs();
+  const deleteQCAM = useDeleteQCAMByID();
 
   // handler functions
   const handleCreate = () => {
@@ -53,8 +56,31 @@ const MasterdataQCAMs = () => {
 
     modalInstance.onOpen();
   };
-  const handleEdit = () => {};
-  const handleDelete = () => {};
+  const handleEdit = ({
+    ID,
+    FIRST_NAME,
+    LAST_NAME,
+    EMAIL,
+    ALLOCATIONS,
+  }: any) => {
+    const newAllocations = ALLOCATIONS.map((item: any) => ({
+      value: item.GROUP_ID,
+      label: item.GROUP_NAME,
+    }));
+    modalInstance.defaultValues = {
+      ID,
+      FIRST_NAME,
+      LAST_NAME,
+      EMAIL,
+      ALLOCATIONS: newAllocations,
+    };
+
+    modalInstance.onOpen();
+  };
+  const handleDelete = (ID: number) => {
+    deleteQCAM.mutate(ID);
+    toast.success("Record deleted");
+  };
 
   // display
   if (query_GET_QCAMs.isLoading)
@@ -97,28 +123,66 @@ const MasterdataQCAMs = () => {
             </TableHeader>
             <TableBody>
               {query_GET_QCAMs.data.map((row, rowIdx) => (
-                <TableRow
-                  key={rowIdx}
-                  className="hover:bg-blue-50 hover:cursor-pointer w-full"
-                >
-                  <TableCell className="font-medium w-1/6">
-                    {row.FIRST_NAME} {row.LAST_NAME}
-                  </TableCell>
-                  <TableCell className="font-medium w-1/6">
-                    {row.EMAIL}
-                  </TableCell>
-                  {row.ALLOCATIONS?.length! > 0 ? (
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        {row.ALLOCATIONS?.map((customer, idx) => (
-                          <Badge key={idx}>{customer.GROUP_NAME}</Badge>
-                        ))}
+                <ContextMenu key={row.ID}>
+                  <ContextMenuTrigger asChild>
+                    <TableRow
+                      key={rowIdx}
+                      className="hover:bg-blue-50 hover:cursor-pointer w-full"
+                    >
+                      <TableCell className="font-medium w-1/6">
+                        {row.FIRST_NAME} {row.LAST_NAME}
+                      </TableCell>
+                      <TableCell className="font-medium w-1/6">
+                        {row.EMAIL}
+                      </TableCell>
+                      {row.ALLOCATIONS?.length! > 0 ? (
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            {row.ALLOCATIONS?.map((customer, idx) => (
+                              <Badge key={idx}>{customer.GROUP_NAME}</Badge>
+                            ))}
+                          </div>
+                        </TableCell>
+                      ) : (
+                        <TableCell>
+                          no customer groups allocated... yet
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent className="flex flex-col gap-1">
+                    <ContextMenuItem>
+                      <div
+                        className="flex items-center gap-2"
+                        onClick={() =>
+                          handleEdit({
+                            ID: row.ID!,
+                            FIRST_NAME: row.FIRST_NAME,
+                            LAST_NAME: row.LAST_NAME,
+                            EMAIL: row.EMAIL,
+                            ALLOCATIONS: row.ALLOCATIONS,
+                          })
+                        }
+                      >
+                        <MagnifyingGlassIcon className="w-4 h-4" />
+                        <span className="text-sm">Edit record</span>
                       </div>
-                    </TableCell>
-                  ) : (
-                    <TableCell>no customer groups allocated... yet</TableCell>
-                  )}
-                </TableRow>
+                    </ContextMenuItem>
+                    <Separator orientation="horizontal" />
+                    <ContextMenuItem className="w-[150px] text-red-500">
+                      <div
+                        className="flex items-center gap-2"
+                        onClick={() => {
+                          handleDelete(row.ID!);
+                        }}
+                      >
+                        <Trash2Icon className="w-4 h-4" />
+                        <span className="text-sm">Delete</span>
+                      </div>
+                      <ContextMenuShortcut>⌘D</ContextMenuShortcut>
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
               ))}
             </TableBody>
           </Table>

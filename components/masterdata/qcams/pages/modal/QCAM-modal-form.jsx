@@ -4,7 +4,6 @@
 import * as z from "zod";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
 // hooks
@@ -24,52 +23,48 @@ import Select from "react-select";
 import { SaveAllIcon } from "lucide-react";
 import { PulseLoader } from "react-spinners";
 
+// --- query fetch functions
+const fetchCustomers = async () => {
+  const TARGET = `http://localhost:1999/api/masterdata/customers`;
+  const response = await axios.get(TARGET);
+
+  var results = [
+    response.data.results.map((elem) => {
+      return { value: elem.GROUP_ID, label: elem.LABEL };
+    }),
+  ];
+
+  return results[0];
+};
+// ---
+
 // other things I initially forgot about
-
-// form schema
-const formSchema = z.object({
-  ID: z.number().optional(),
-  FIRST_NAME: z
-    .string()
-    .min(2, { message: "surely there is a first name, right? right?" }),
-  LAST_NAME: z
-    .string()
-    .min(2, { message: "don't forget about the last name, it's important" }),
-  EMAIL: z.string().email(),
-  ALLOCATIONS: z
-    .object({
-      value: z.string(),
-      label: z.string(),
-    })
-    .array()
-    .optional(),
-});
-
-// test stuff
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-// test stuff
+import { usePostQCAM, usePutQCAMByID } from "../../services/mutations";
 
 const QCAMForm = () => {
-  // instantiate the things
-  const modalInstance = useQCAMModal();
+  // get data for customers dropdown
+  const { data: customers, isLoading: customersLoading } = useQuery({
+    queryKey: ["allCustomers"],
+    queryFn: () => fetchCustomers(),
+  });
 
+  // instantiate the hooks
+  const modalInstance = useQCAMModal();
+  const postQCAM = usePostQCAM();
+  const editQCAM = usePutQCAMByID();
   const form = useForm({
-    defaultValues: {
-      ID: 0,
-      FIRST_NAME: "",
-      LAST_NAME: "",
-      EMAIL: "",
-      ALLOCATIONS: [],
-    },
+    defaultValues: modalInstance.defaultValues,
   });
 
   // function handlers
   const onSubmit = (values) => {
-    console.log(values);
+    if (values.ID === 0) {
+      // add
+      postQCAM.mutate(values);
+    } else {
+      // edit
+      editQCAM.mutate(values);
+    }
 
     modalInstance.onClose();
   };
@@ -153,7 +148,7 @@ const QCAMForm = () => {
             render={({ field }) => (
               <Select
                 {...field}
-                options={options}
+                options={customers}
                 isMulti
                 isClearable
                 placeholder="select at least one option, if applicable"

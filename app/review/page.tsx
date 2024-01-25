@@ -70,15 +70,15 @@ const EscalationsPreview = () => {
                 <h1 className="text-2xl font-bold">Escalations</h1>
                 <TabsList>
                   <TabsTrigger value="all" className="text-xs">
-                    All levels
+                    All available
                   </TabsTrigger>
                   <TabsTrigger value="yellow" className="text-xs">
-                    <span className="flex h-2 w-2 rounded-full bg-yellow-400 mr-2" />
-                    Yellow
+                    <span className="flex h-2 w-2 rounded-full bg-yellow-300 mr-2" />
+                    Closed
                   </TabsTrigger>
                   <TabsTrigger value="red" className="text-xs">
-                    <span className="flex h-2 w-2 rounded-full bg-red-500 mr-2" />
-                    Red
+                    <span className="flex h-2 w-2 rounded-full bg-red-600 mr-2" />
+                    Still Open
                   </TabsTrigger>
                 </TabsList>
               </div>

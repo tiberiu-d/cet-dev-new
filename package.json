@@ -44,6 +44,7 @@
     "react-hot-toast": "^2.4.1",
     "react-resizable-panels": "^1.0.5",
     "react-select": "^5.8.0",
+    "react-spinners": "^0.13.8",
     "sass": "^1.69.5",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",

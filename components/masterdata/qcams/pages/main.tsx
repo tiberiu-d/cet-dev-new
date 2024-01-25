@@ -30,6 +30,7 @@ import { useGetQCAMs } from "../services/queries";
 // icons
 import { DeleteIcon, PlusCircleIcon, Trash2Icon } from "lucide-react";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { GridLoader } from "react-spinners";
 
 // my additional components
 import QCAMsModal from "./modal/QCAM-modal";
@@ -56,6 +57,26 @@ const MasterdataQCAMs = () => {
   const handleDelete = () => {};
 
   // display
+  if (query_GET_QCAMs.isLoading)
+    return (
+      <>
+        <div className="h-full flex flex-col items-center justify-center gap-10">
+          <GridLoader color="#36d7b7" size={15} speedMultiplier={1} />
+          <span>data is loading, hold on for a minute or two ...</span>
+        </div>
+      </>
+    );
+
+  // if nothing, then basic error message
+  if (query_GET_QCAMs.isError)
+    return (
+      <>
+        <div className="h-full flex flex-col items-center justify-center">
+          nothing to show, something went very wrong ...
+        </div>
+      </>
+    );
+
   if (query_GET_QCAMs.data)
     return (
       <>
@@ -104,15 +125,6 @@ const MasterdataQCAMs = () => {
         </div>
       </>
     );
-
-  // if nothing, then basic error message
-  return (
-    <>
-      <div className="h-full flex flex-col items-center justify-center">
-        nothing to show, or something went very wrong ...
-      </div>
-    </>
-  );
 };
 
 export default MasterdataQCAMs;

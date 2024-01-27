@@ -31,7 +31,9 @@
     "components/masterdata/qcams/pages/modal/QCAM-modal-form.jsx",
     "components/new-escalation/main.jsx",
     "components/new-escalation/steps/step-one.jsx",
-    "components/new-escalation/steps/step-two.jsx"
+    "components/new-escalation/steps/step-two.jsx",
+    //
+    "components/multistep-form/*.jsx"
   ],
   "exclude": ["node_modules"]
 }

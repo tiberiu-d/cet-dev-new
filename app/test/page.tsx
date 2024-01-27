@@ -1,10 +1,10 @@
-import FormPage from "@/components/multistep-form/form";
+import NewEscalationForm from "@/components/multistep-form/form-new";
 
 const TestPage = () => {
   return (
-    <div>
-      <FormPage />
-    </div>
+    <section>
+      <NewEscalationForm />
+    </section>
   );
 };
 export default TestPage;

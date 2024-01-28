@@ -23,6 +23,15 @@ const escalationStatusOptions = [
   { value: "in_progress", label: "In Progress" },
   { value: "closed", label: "Closed" },
 ];
+const escalationTypesOptions = [
+  { value: "0km", label: "0 kilometers" },
+  { value: "0kmfield", label: "0 kilometers & Field" },
+  { value: "audit", label: "Audit" },
+  { value: "development", label: "Development" },
+  { value: "field", label: "Field" },
+  { value: "launch", label: "Launch" },
+  { value: "logistics", label: "Logistics" },
+];
 
 const StepOne = ({
   TYPE,
@@ -61,7 +70,7 @@ const StepOne = ({
         <Select
           name="TYPE"
           defaultValue={TYPE}
-          options={escalationStatusOptions}
+          options={escalationTypesOptions}
           onChange={(value) => updateFields({ TYPE: value })}
         />
       </div>

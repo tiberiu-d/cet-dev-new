@@ -32,7 +32,7 @@ const MenuBar = () => {
         <MenubarMenu>
           <MenubarTrigger className="hover:bg-slate-200">File</MenubarTrigger>
           <MenubarContent>
-            <Link href="/new-escalation">
+            <Link href="/test">
               <MenubarItem>
                 <PuzzleIcon className="h-4 w-4 mr-3" />
                 Add new Escalation

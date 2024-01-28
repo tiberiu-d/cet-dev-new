@@ -12,15 +12,12 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { ChevronRightSquare, ChevronLeftSquare, SaveAll } from "lucide-react";
 
 import StepOne from "./form-step-1";
+import StepTwo from "./form-step-2";
+import StepThree from "./form-step-3";
+import StepFour from "./form-step-4";
+import StepFive from "./form-step-5";
 
-const INITIAL_DATA = {
-  TYPE: "",
-  STATUS: { value: "in_progress", label: "In Progress" },
-  TITLE: "",
-  DESCRIPTION: "",
-};
-
-const NewEscalationForm = () => {
+const NewEscalationForm = ({ INITIAL_DATA }) => {
   const [isValid, setIsValid] = useState(true);
   const [data, setData] = useState(INITIAL_DATA);
 
@@ -56,20 +53,20 @@ const NewEscalationForm = () => {
     },
     {
       title: "customer info",
-      component: <div>step 2</div>,
+      component: <StepTwo {...data} updateFields={updateFields} />,
     },
     {
       title: "vitesco info",
-      component: <div>step 3</div>,
+      component: <StepThree {...data} updateFields={updateFields} />,
     },
     {
       title: "follow-up info",
-      component: <div>step 4</div>,
+      component: <StepFour {...data} updateFields={updateFields} />,
     },
-    {
-      title: "review and feedback",
-      component: <div>final</div>,
-    },
+    // {
+    //   title: "review and feedback",
+    //   component: <StepFive data={data} validateForm={onFormValidate} />,
+    // },
   ];
 
   // hooks

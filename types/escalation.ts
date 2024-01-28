@@ -10,6 +10,7 @@ export type EscalationType = {
   CUSTOMER_GROUP_ID: string;
   LEVEL: string;
   LEVEL_COLOR: string;
+  STATUS: string;
 };
 
 export type PartialEscalationType = Partial<EscalationType>;

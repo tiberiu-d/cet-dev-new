@@ -119,7 +119,7 @@ const EscalationsPreview = () => {
               {escalations ? (
                 <EscalationList
                   items={escalations.filter(
-                    (item) => item.LEVEL_COLOR?.toLowerCase() === "y"
+                    (item) => item.STATUS?.toLowerCase() === "closed"
                   )}
                 />
               ) : (
@@ -130,7 +130,7 @@ const EscalationsPreview = () => {
               {escalations && (
                 <EscalationList
                   items={escalations.filter(
-                    (item) => item.LEVEL_COLOR.toLowerCase() === "r"
+                    (item) => item.STATUS.toLowerCase() === "in_progress"
                   )}
                 />
               )}

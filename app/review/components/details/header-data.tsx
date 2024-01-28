@@ -86,15 +86,8 @@ const HeaderData = (escalation: PartialEscalationType) => {
               <TooltipTrigger asChild>
                 <div>
                   <Badge
-                    className={cn(
-                      escalation.LEVEL_COLOR?.toLowerCase() === "y" &&
-                        "bg-yellow-300 text-black hover:bg-yellow-300",
-                      escalation.LEVEL_COLOR?.toLowerCase() === "r" &&
-                        "bg-red-500 text-white hover:bg-red-500",
-                      escalation.LEVEL_COLOR?.toLowerCase() === "n" &&
-                        "bg-neutral-400 text-white hover:bg-neutral-400",
-                      "font-thin text-xs hover:cursor-help hover:border hover:border-gray-700 px-2 py-1"
-                    )}
+                    className="font-thin text-xs hover:cursor-help hover:border hover:border-gray-700 px-2 py-1"
+                    style={{ backgroundColor: `${escalation.LEVEL_COLOR}` }}
                   >
                     {escalation.LEVEL}
                   </Badge>

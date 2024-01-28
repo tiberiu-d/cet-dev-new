@@ -44,6 +44,7 @@ const OnePager = ({ ESCALATION_ID }: OnePagerProps) => {
   }
 
   if (onePager) {
+    console.log(onePager);
     return (
       <div className="w-full h-full flex flex-col items-start">
         <div className="w-full grid grid-cols-2 gap-5 mx-auto pt-6">

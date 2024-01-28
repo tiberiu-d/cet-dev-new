@@ -1,4 +1,6 @@
 "use client";
+import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import FormLogo from "./form-logo";
 import FormFeedback from "./form-feedback";
@@ -17,9 +19,30 @@ import StepThree from "./form-step-3";
 import StepFour from "./form-step-4";
 import StepFive from "./form-step-5";
 
+// config
+const API_PORT = 1999;
+const API_URL = `http://localhost:${API_PORT}/api/`;
+const axiosInstance = axios.create({ baseURL: API_URL });
+
 const NewEscalationForm = ({ INITIAL_DATA }) => {
   const [isValid, setIsValid] = useState(true);
   const [data, setData] = useState(INITIAL_DATA);
+
+  const newEscalationHook = useMutation({
+    mutationKey: ["postEscalation"],
+    mutationFn: async (data) => await axiosInstance.post("escals", data),
+    onSettled: async (_, error, variables) => {
+      if (error) {
+        console.log("[newEscalation] onSettled: " + error.message);
+        console.log(variables);
+      } else {
+        // await queryClient.invalidateQueries({
+        //   queryKey: ["allQCAMs"],
+        // });
+        console.log("... waiting to invalidate queries");
+      }
+    },
+  });
 
   // handlers
   const onFormValidate = (flag) => {
@@ -33,7 +56,7 @@ const NewEscalationForm = ({ INITIAL_DATA }) => {
       formInstance.nextStep();
     } else {
       if (isValid) {
-        console.log(data);
+        newEscalationHook.mutate(data);
       } else {
         console.log("something went wrong");
       }

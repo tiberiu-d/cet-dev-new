@@ -18,6 +18,7 @@ interface EscalationDisplayProps {
 
 const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
   if (escalation) {
+    console.log(escalation);
     return (
       <div className="w-full h-full flex flex-col items-top">
         <HeaderData

@@ -51,15 +51,8 @@ const EscalationList = ({ items }: EscalationListProps) => {
                 <div className="flex items-center gap-2">
                   <Badge
                     variant="default"
-                    className={cn(
-                      item.LEVEL_COLOR.toLowerCase() === "y" &&
-                        "bg-yellow-300 text-black hover:bg-yellow-300",
-                      item.LEVEL_COLOR.toLowerCase() === "r" &&
-                        "bg-red-500 text-white hover:bg-red-500",
-                      item.LEVEL_COLOR.toLowerCase() === "n" &&
-                        "bg-neutral-400 text-white hover:bg-neutral-400",
-                      "font-thin text-xs"
-                    )}
+                    className="font-thin text-xs"
+                    style={{ backgroundColor: `${item.LEVEL_COLOR}` }}
                   >
                     {item.LEVEL}
                   </Badge>

@@ -9,6 +9,7 @@ type VitescoBranchProps = {
 };
 
 const VitescoBranch = (escalation: VitescoBranchProps) => {
+  console.log(escalation.data.RECURRING);
   return (
     <div className="w-full flex flex-col items-start gap-2 pb-3">
       <Leaf key={"status"} LABEL="Status" VALUES={["In Progress"]} />
@@ -64,8 +65,10 @@ const VitescoBranch = (escalation: VitescoBranchProps) => {
         key={"recurring"}
         LABEL="Is Recurring?"
         VALUES={[
-          escalation.data.RECURRING
-            ? escalation.data.RECURRING.toString()
+          escalation.data.RECURRING === true
+            ? "recurring"
+            : escalation.data.RECURRING === false
+            ? "not recurring"
             : "no data",
         ]}
       />

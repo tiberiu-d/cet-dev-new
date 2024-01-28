@@ -8,6 +8,7 @@ type CustomerBranchProps = {
 
 const CustomerBranch = (escalation: CustomerBranchProps) => {
   if (escalation) {
+    console.log(escalation.data.QKAM);
     return (
       <div className="w-full flex flex-col items-start gap-2">
         <Leaf key={"QCAM"} LABEL={"QCAM"} VALUES={[escalation.data.QKAM!]} />

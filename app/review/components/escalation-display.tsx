@@ -11,6 +11,7 @@ import { EscalationType } from "@/types/escalation";
 // additional components
 import OnePager from "./details/one-pager";
 import HeaderData from "@/app/review/components/details/header-data";
+import TimelinePage from "@/components/scheduler/page";
 
 interface EscalationDisplayProps {
   escalation: EscalationType | null;
@@ -51,7 +52,12 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
               <OnePager ESCALATION_ID={escalation.ID} />
             </ScrollArea>
           </TabsContent>
-          <TabsContent value="history">two</TabsContent>
+          <TabsContent
+            value="history"
+            className="w-full flex-grow overflow-auto"
+          >
+            <TimelinePage />
+          </TabsContent>
           <TabsContent value="feedback">three</TabsContent>
         </Tabs>
       </div>

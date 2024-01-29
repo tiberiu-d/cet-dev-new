@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -44,6 +45,23 @@ const NewEscalationForm = ({ INITIAL_DATA }) => {
     },
   });
 
+  const editEscalationHook = useMutation({
+    mutationKey: ["editEscalation"],
+    mutationFn: async (data) => await axiosInstance.put("escals", data),
+    onSettled: async (_, error, variables) => {
+      if (error) {
+        console.log("[editEscalation] onSettled: " + error.message);
+        console.log(variables);
+      } else {
+        // await queryClient.invalidateQueries({
+        //   queryKey: ["allQCAMs"],
+        // });
+        console.log("... waiting to invalidate queries");
+      }
+    },
+  });
+
+  const router = useRouter();
   // handlers
   const onFormValidate = (flag) => {
     setIsValid(flag);
@@ -56,7 +74,13 @@ const NewEscalationForm = ({ INITIAL_DATA }) => {
       formInstance.nextStep();
     } else {
       if (isValid) {
-        newEscalationHook.mutate(data);
+        if (data.ID === "0") {
+          newEscalationHook.mutate(data);
+          router.push("/review");
+        } else {
+          editEscalationHook.mutate(data);
+          router.push("/review");
+        }
       } else {
         console.log("something went wrong");
       }

@@ -28,32 +28,6 @@ const CASTATUS_OPTIONS = [
   { value: "completed", label: "Completed" },
 ];
 
-// temp options
-const tempDivision = [
-  { value: "division1", label: "division1" },
-  { value: "division2", label: "division2" },
-];
-const tempBU = [
-  { value: "bu1", label: "bu1" },
-  { value: "bu2", label: "bu2" },
-];
-const tempBUS = [
-  { value: "bus1", label: "bus1" },
-  { value: "bus2", label: "bus2" },
-];
-const tempSEGMENT = [
-  { value: "segment1", label: "segment1" },
-  { value: "segment2", label: "segment2" },
-];
-const tempSUBSEGMENT = [
-  { value: "subsegment1", label: "subsegment1" },
-  { value: "subsegment2", label: "subsegment2" },
-];
-const tempPLANTS = [
-  { value: "plants1", label: "plants1" },
-  { value: "plants2", label: "plants2" },
-];
-
 const StepThree = ({
   updateFields,
   ESTDESCAL_DATE,
@@ -243,12 +217,7 @@ const StepThree = ({
         />
       </div>
       <div className="col-span-2">
-        <Label>
-          Additional Business Units{" "}
-          <span className="text-xs">
-            (<span className="font-bold text-red-500">*</span>)
-          </span>
-        </Label>
+        <Label>Additional Business Units</Label>
         <Select
           isMulti
           isSearchable

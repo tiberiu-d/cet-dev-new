@@ -22,6 +22,7 @@ import { Clock, MoreVertical } from "lucide-react";
 import { PartialEscalationType } from "@/types/escalation";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const HeaderData = (escalation: PartialEscalationType) => {
   return (
@@ -73,7 +74,11 @@ const HeaderData = (escalation: PartialEscalationType) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Quick Action #1</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href={`/escalations/${escalation.ID}`}>
+                      Edit this Escalation
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>Quick Action #2</DropdownMenuItem>
                   <DropdownMenuItem>Quick Action #3</DropdownMenuItem>
                 </DropdownMenuContent>
@@ -97,6 +102,21 @@ const HeaderData = (escalation: PartialEscalationType) => {
                 <span className="font-normal text-sm">
                   customer escalation level
                 </span>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div>
+                  <Badge
+                    variant="outline"
+                    className="hover:cursor-help hover:border hover:border-gray-700 hover:bg-gray-100 px-2 py-1"
+                  >
+                    {escalation.ESCAL_DATE}
+                  </Badge>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <span className="font-normal text-sm">escalation date</span>
               </TooltipContent>
             </Tooltip>
             <Tooltip>

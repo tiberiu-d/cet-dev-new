@@ -18,7 +18,6 @@ interface EscalationDisplayProps {
 
 const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
   if (escalation) {
-    console.log(escalation);
     return (
       <div className="w-full h-full flex flex-col items-top">
         <HeaderData
@@ -28,7 +27,10 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
           CREATION_DATE={format(escalation.CREATION_DATE, "dd.MM.yyyy")}
           ESCAL_DATE={format(escalation.ESCAL_DATE, "dd.MM.yyyy")}
           DESCAL_DATE={format(escalation.DESCAL_DATE, "dd.MM.yyyy")}
-          ESTIMATED_DESCAL_DATE={format(escalation.ESTIMATED_DESCAL_DATE, "dd.MM.yyyy")}
+          ESTIMATED_DESCAL_DATE={format(
+            escalation.ESTIMATED_DESCAL_DATE,
+            "dd.MM.yyyy"
+          )}
           LEVEL={escalation.LEVEL}
           LEVEL_COLOR={escalation.LEVEL_COLOR}
           CUSTOMER_GROUP_ID={escalation.CUSTOMER_GROUP_ID}

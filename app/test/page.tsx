@@ -1,6 +1,7 @@
 import NewEscalationForm from "@/components/multistep-form/form-new";
 
 const INITIAL_DATA = {
+  ID: "0",
   STATUS: { value: "in_progress", label: "In Progress" },
   TYPE: "",
   TITLE: "",

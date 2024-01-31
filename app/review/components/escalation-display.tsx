@@ -44,14 +44,17 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
           <Separator className="sticky top-5" />
           <TabsList className="sticky">
             <TabsTrigger value="dash">One Pager</TabsTrigger>
+            {/*
             <TabsTrigger value="history">History</TabsTrigger>
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
+             */}
           </TabsList>
           <TabsContent value="dash" className="w-full flex-grow overflow-auto">
             <ScrollArea className="h-full px-4 py-2">
               <OnePager ESCALATION_ID={escalation.ID} />
             </ScrollArea>
           </TabsContent>
+          {/*
           <TabsContent
             value="history"
             className="w-full flex-grow overflow-auto"
@@ -59,6 +62,7 @@ const EscalationDisplay = ({ escalation }: EscalationDisplayProps) => {
             <TimelinePage />
           </TabsContent>
           <TabsContent value="feedback">three</TabsContent>
+           */}
         </Tabs>
       </div>
     );
